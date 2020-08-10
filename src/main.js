@@ -30,8 +30,8 @@ import router from './router';
 import store from './store';
 
 // Axios Defaults
-axios.defaults.baseURL = 'api.thealchemistalcohol.com';
-// Cookies
+axios.defaults.baseURL = 'https://api.thealchemistalcohol.com';
+
 // Initialise in the app
 // BootStrap
 Vue.use(BootstrapVue);
@@ -45,7 +45,7 @@ Vue.use(PortalVue);
 
 // Vue Cookies
 Vue.use(VueCookies);
-
+Vue.$cookies.config('20min', '', 'api.thealchemistalcohol.com', true, 'Strict');
 // Font Awesome
 library.add(faGlassCheers, faMapMarkerAlt);
 library.add(faTelegram);

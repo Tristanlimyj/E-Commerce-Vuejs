@@ -8,7 +8,7 @@ const store = new Vuex.Store({
   state: {
     status: '',
     currentUser: {},
-    apiurl: 'api.thealchemistalcohol.com',
+    apiurl: 'https://api.thealchemistalcohol.com',
   },
   getters: {
   },
@@ -30,7 +30,7 @@ const store = new Vuex.Store({
     },
     decodeToken({ commit }, token) {
       const cleanToken = VueJwtDecode.decode(token);
-      Vue.$cookies.set('name', cleanToken.name, '15min');
+      Vue.$cookies.set('name', cleanToken.name, '20min');
       commit('setCurrentUser', cleanToken.name);
     },
   },

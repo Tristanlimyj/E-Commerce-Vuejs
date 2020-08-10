@@ -36,7 +36,7 @@ export default {
         .then((response) => {
           const token = String(response.data.token);
 
-          this.$cookies.set('token', token, '15min');
+          this.$cookies.set('token', token, '20min');
           this.$store.dispatch('decodeToken', token);
 
           this.$router.push({ path: '/admin/dashboard' });
