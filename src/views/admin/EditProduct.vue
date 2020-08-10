@@ -115,8 +115,7 @@ export default {
     },
   },
   created() {
-    let productUrl = 'http://127.0.0.1:5000/indv_product/';
-    productUrl += this.$route.params.name;
+    const productUrl = '/indv_product/'.concat(this.$route.params.name);
 
     axios.get(productUrl)
       .then((response) => {

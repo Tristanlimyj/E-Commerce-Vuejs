@@ -30,7 +30,8 @@ import router from './router';
 import store from './store';
 
 // Axios Defaults
-axios.defaults.baseURL = 'http://127.0.0.1:5000';
+axios.defaults.baseURL = 'api.thealchemistalcohol.com';
+// Cookies
 // Initialise in the app
 // BootStrap
 Vue.use(BootstrapVue);
