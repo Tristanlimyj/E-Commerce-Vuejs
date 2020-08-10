@@ -1,6 +1,5 @@
 const express = require('express') 
-var secure = require('ssl-express-www')
-
+const secure = require('ssl-express-www')
 
 const app = express()
 app.use(secure)
@@ -12,5 +11,3 @@ app.get(/.*/, function(req, res) {
     res.sendfile(__dirname + "/dist/index.html")
 }); 
 app.listen(port);
-
-console.log('Server started...')
