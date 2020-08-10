@@ -45,7 +45,7 @@ Vue.use(PortalVue);
 
 // Vue Cookies
 Vue.use(VueCookies);
-Vue.$cookies.config('20min', '', 'api.thealchemistalcohol.com', true, 'Lax');
+Vue.$cookies.config('20min', '/', '.thealchemistalcohol.com', true, 'Lax');
 // Font Awesome
 library.add(faGlassCheers, faMapMarkerAlt);
 library.add(faTelegram);
