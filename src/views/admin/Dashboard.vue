@@ -5,7 +5,7 @@
         <div v-for="(product, index) in products" :key="index">
           <b-card
           :title="product.name"
-          :img-src="base + 'images/' + product.coverphoto"
+          :img-src="base + '/images/' + product.coverphoto"
           :img-alt="product.name"
           img-top
           style="max-width: 20rem; text-align: center;"

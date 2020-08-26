@@ -99,7 +99,7 @@ export default {
       payload.append('mixer', JSON.stringify(this.productForm.mixer));
       payload.append('price', this.productForm.price);
       payload.append('inventory', this.productForm.inventory);
-      payload.append('coverphoto', this.productForm.coverphoto);
+      payload.append('coverphoto', this.productForm.coverphoto, this.product.coverphoto.name);
 
       this.createProduct(payload);
     },
