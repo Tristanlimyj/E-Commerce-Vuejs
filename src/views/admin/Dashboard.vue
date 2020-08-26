@@ -13,13 +13,13 @@
           >
             <div class="d-flex justify-content-center">
               <b-button
-                :href="'http://localhost:8080/products/' + product.name.replace(/\s/g, '-')"
+                :href="base +  '/products/' + product.name.replace(/\s/g, '-')"
                 variant="secondary"
               >
               View
               </b-button>
               <b-button
-                :href="'http://localhost:8080/admin/product/edit/' + product.name.replace(/\s/g, '-')"
+                :href="base + '/admin/product/edit/' + product.name.replace(/\s/g, '-')"
                 variant="primary"
               >
               Edit
