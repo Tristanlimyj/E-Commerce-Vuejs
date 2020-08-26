@@ -87,7 +87,7 @@ const routes = [
         component: Inventory,
       },
       {
-        path: '/products/:name',
+        path: '/product/:name',
         name: '',
         component: IndvPro,
       },

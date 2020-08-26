@@ -13,7 +13,7 @@
           >
             <div class="d-flex justify-content-center">
               <b-button
-                :href="base +  '/products/' + product.name.replace(/\s/g, '-')"
+                :href="base +  '/admin/product/' + product.name.replace(/\s/g, '-')"
                 variant="secondary"
               >
               View
