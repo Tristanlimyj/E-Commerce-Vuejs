@@ -9,6 +9,7 @@ const store = new Vuex.Store({
     status: '',
     currentUser: {},
     apiurl: 'https://api.thealchemistalcohol.com',
+    baseurl: 'https://www.thealchemistalcohol.com',
   },
   getters: {
   },

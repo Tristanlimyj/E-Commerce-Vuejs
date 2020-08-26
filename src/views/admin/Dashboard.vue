@@ -5,7 +5,7 @@
         <div v-for="(product, index) in products" :key="index">
           <b-card
           :title="product.name"
-          :img-src="base + '/images/' + product.coverphoto"
+          :img-src="apiUrl + '/images/' + product.coverphoto"
           :img-alt="product.name"
           img-top
           style="max-width: 20rem; text-align: center;"
@@ -13,13 +13,13 @@
           >
             <div class="d-flex justify-content-center">
               <b-button
-                :href="base +  '/admin/product/' + product.name.replace(/\s/g, '-')"
+                :href="baseUrl +  '/admin/product/' + product.name.replace(/\s/g, '-')"
                 variant="secondary"
               >
               View
               </b-button>
               <b-button
-                :href="base + '/admin/product/edit/' + product.name.replace(/\s/g, '-')"
+                :href="baseUrl + '/admin/product/edit/' + product.name.replace(/\s/g, '-')"
                 variant="primary"
               >
               Edit
@@ -43,7 +43,8 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      base: this.$store.state.apiurl,
+      apiUrl: this.$store.state.apiurl,
+      baseUrl: this.$store.state.baseurl,
       products: {},
       empty: '',
     };
