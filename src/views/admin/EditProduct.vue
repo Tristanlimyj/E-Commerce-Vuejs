@@ -10,7 +10,7 @@
           lg='6'
         >
           <b-img v-if="coverPhotoChange" :src="coverphotoURl"></b-img>
-          <b-img v-else :src="$store.state.apiurl + 'images/' + productForm.currentphoto"></b-img>
+          <b-img v-else :src="$store.state.apiurl + '/images/' + productForm.currentphoto"></b-img>
         </b-col>
         <b-col
           xs='12'

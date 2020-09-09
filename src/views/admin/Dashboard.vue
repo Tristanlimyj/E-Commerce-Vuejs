@@ -13,13 +13,13 @@
           >
             <div class="d-flex justify-content-center">
               <b-button
-                :href="baseUrl +  '/admin/product/' + product.name.replace(/\s/g, '-')"
+                :href="'/admin/product/' + product.name.replace(/\s/g, '-')"
                 variant="secondary"
               >
               View
               </b-button>
               <b-button
-                :href="baseUrl + '/admin/product/edit/' + product.name.replace(/\s/g, '-')"
+                :href="'/admin/product/edit/' + product.name.replace(/\s/g, '-')"
                 variant="primary"
               >
               Edit
@@ -44,7 +44,6 @@ export default {
   data() {
     return {
       apiUrl: this.$store.state.apiurl,
-      baseUrl: this.$store.state.baseurl,
       products: {},
       empty: '',
     };

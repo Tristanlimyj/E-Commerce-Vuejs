@@ -67,8 +67,8 @@ export default {
     createProduct(payload) {
       axios.post('new_product', payload, {
         headers: {
-          'x-access-token': this.$cookies.get('token'),
           'Content-Type': 'multipart/form-data',
+          'x-access-token': this.$cookies.get('token'),
         },
       })
         .then(() => {
@@ -99,7 +99,7 @@ export default {
       payload.append('mixer', JSON.stringify(this.productForm.mixer));
       payload.append('price', this.productForm.price);
       payload.append('inventory', this.productForm.inventory);
-      payload.append('coverphoto', this.productForm.coverphoto, this.product.coverphoto.name);
+      payload.append('coverphoto', this.productForm.coverphoto, this.productForm.coverphoto.name);
 
       this.createProduct(payload);
     },

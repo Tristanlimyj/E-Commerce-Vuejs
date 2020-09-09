@@ -13,7 +13,7 @@
         xl="4"
         offset-xl="2"
         >
-          <img :src="base + 'images/' + info.coverphoto">
+          <img :src="base + '/images/' + info.coverphoto">
         </b-col >
         <b-col
         sm='12'
@@ -39,22 +39,6 @@
                 required
               ></b-form-input>
             </b-form-group>
-            <!-- Ice -->
-            <b-form-group label="Would you like ice?">
-              <b-form-radio-group
-                v-model="cartForm.ice"
-                :options="iceOption"
-                name="radio-ice"
-              ></b-form-radio-group>
-            </b-form-group>
-            <!-- Cups -->
-            <b-form-group label="Would you like Cups?">
-              <b-form-radio-group
-                v-model="cartForm.cups"
-                :options="cupOption"
-                name="radio-cups"
-              ></b-form-radio-group>
-            </b-form-group>
             <b-button type="submit" variant="primary">Add to Cart</b-button>
           </b-form>
         </b-col>
@@ -71,14 +55,6 @@ export default {
     return {
       base: this.$store.state.apiurl,
       product: {},
-      iceOption: [
-        { text: 'Ice', value: true },
-        { text: 'No Ice', value: false },
-      ],
-      cupOption: [
-        { text: 'Cup', value: true },
-        { text: 'No Cups', value: false },
-      ],
       cartForm: {
         quantity: 1,
         ice: true,
@@ -99,7 +75,7 @@ export default {
     },
   },
   created() {
-    let productUrl = 'indv_product/';
+    let productUrl = '/indv_product/';
     productUrl += this.$route.params.name;
 
     axios.get(productUrl, {
