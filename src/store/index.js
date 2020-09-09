@@ -8,8 +8,8 @@ const store = new Vuex.Store({
   state: {
     status: '',
     currentUser: {},
-    apiurl: 'https://2efeded5bd1b.ngrok.io',
-    // apiurl: 'https://api.thealchemistalcohol.com',
+    // apiurl: 'https://2efeded5bd1b.ngrok.io',
+    apiurl: 'https://api.thealchemistalcohol.com',
     baseurl: 'https://www.thealchemistalcohol.com',
   },
   getters: {
