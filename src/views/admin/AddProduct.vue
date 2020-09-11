@@ -50,6 +50,7 @@ export default {
           first: '',
           second: '',
           third: '',
+          fourth: '',
         },
         inventory: 0,
         coverphoto: null,

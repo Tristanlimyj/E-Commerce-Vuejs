@@ -85,6 +85,22 @@
               </b-form-group>
               <span>{{ errors[0] }}</span>
             </ValidationProvider>
+            <!-- Fourth Mixer -->
+            <ValidationProvider v-slot="{ errors }">
+              <b-form-group
+                id="mixer-fourth-group"
+                label="Fourth Mixer (Optional):"
+                label-for="mixer-fourth-input"
+              >
+              <b-form-input
+                  id="mixer-fourth-input"
+                  v-model="productForm.mixer.fourth"
+                  type="text"
+                  placeholder="fourth Mixer"
+                ></b-form-input>
+              </b-form-group>
+              <span>{{ errors[0] }}</span>
+            </ValidationProvider>
             <!-- Alcohol Type -->
             <ValidationProvider rules="required" v-slot="{ errors }">
               <b-form-group
