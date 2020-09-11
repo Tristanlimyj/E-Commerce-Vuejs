@@ -90,6 +90,7 @@ export default {
       this.productForm.mixer.first = '';
       this.productForm.mixer.second = '';
       this.productForm.mixer.third = '';
+      this.productForm.mixer.fourth = '';
       this.productForm.inventory = '';
       this.productForm.coverphoto = null;
     },

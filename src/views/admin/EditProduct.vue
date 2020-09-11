@@ -92,6 +92,7 @@ export default {
       this.productForm.mixer.first = dirtyForm[0].mixer.first;
       this.productForm.mixer.second = dirtyForm[0].mixer.second;
       this.productForm.mixer.third = dirtyForm[0].mixer.third;
+      this.productForm.mixer.fourth = dirtyForm[0].mixer.fourth;
       this.productForm.name = dirtyForm[0].name;
       this.productForm.public_id = dirtyForm[0].public_id;
       this.productForm.type_alcohol = dirtyForm[0].type_alcohol;
