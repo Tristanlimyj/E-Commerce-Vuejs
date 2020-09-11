@@ -30,8 +30,8 @@ import router from './router';
 import store from './store';
 
 // Axios Defaults
-axios.defaults.baseURL = 'https://005e3ec73bcb.ngrok.io';
-// axios.defaults.baseURL = 'https://api.thealchemistalcohol.com';
+// axios.defaults.baseURL = 'https://005e3ec73bcb.ngrok.io';
+axios.defaults.baseURL = 'https://api.thealchemistalcohol.com';
 
 // Initialise in the app
 // BootStrap
