@@ -29,9 +29,10 @@ import router from './router';
 // Vuex Import
 import store from './store';
 
+// ENV Variable
+require('dotenv').config();
 // Axios Defaults
-axios.defaults.baseURL = 'https://eac1a7bcbf08.ngrok.io';
-// axios.defaults.baseURL = 'https://api.thealchemistalcohol.com';
+axios.defaults.baseURL = process.env.VUE_APP_APIURL;
 
 // Initialise in the app
 // BootStrap

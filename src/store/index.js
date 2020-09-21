@@ -2,15 +2,15 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueJwtDecode from 'vue-jwt-decode';
 
+require('dotenv').config();
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
     status: '',
     currentUser: {},
-    apiurl: 'https://eac1a7bcbf08.ngrok.io',
-    // apiurl: 'https://api.thealchemistalcohol.com',
-    baseurl: 'https://www.thealchemistalcohol.com',
+    apiurl: process.env.VUE_APP_APIURL,
   },
   getters: {
   },
