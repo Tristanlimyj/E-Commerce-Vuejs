@@ -9,7 +9,7 @@
           :img-alt="product.name"
           img-top
           style="max-width: 20rem; text-align: center;"
-          class="mb-2"
+          class="mb-2 product"
           >
             <div class="d-flex justify-content-center">
               <b-button
@@ -71,7 +71,15 @@ export default {
 };
 </script>
 <style scoped>
+.product {
+  max-width: auto;
+  max-height: 25%;
+}
 .btn {
   margin: 0.2rem;
+}
+img {
+  height: 100%;
+  width: 100%;
 }
 </style>

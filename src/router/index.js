@@ -16,7 +16,8 @@ import Login from '../views/admin/Login.vue';
 import Registration from '../views/admin/Registration.vue';
 import Orders from '../views/admin/Orders.vue';
 import Cart from '../views/admin/Cart.vue';
-import Inventory from '../views/admin/Inventory.vue';
+import Mixer from '../views/admin/Mixer.vue';
+import AddOn from '../views/admin/AddOn.vue';
 
 // Components
 Vue.use(VueRouter);
@@ -82,14 +83,19 @@ const routes = [
         component: Orders,
       },
       {
-        path: 'inventory',
-        name: 'Inventory',
-        component: Inventory,
-      },
-      {
         path: 'product/:name',
         name: 'IndvPro',
         component: IndvPro,
+      },
+      {
+        path: 'mixer',
+        name: 'Mixer',
+        component: Mixer,
+      },
+      {
+        path: 'addon',
+        name: 'AddOn',
+        component: AddOn,
       },
     ],
   },

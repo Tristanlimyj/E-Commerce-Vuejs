@@ -46,13 +46,7 @@ export default {
         name: '',
         price: '',
         type_alcohol: '',
-        mixer: {
-          first: '',
-          second: '',
-          third: '',
-          fourth: '',
-        },
-        inventory: 0,
+        mixer: [],
         coverphoto: null,
       },
       // notification //
@@ -87,10 +81,7 @@ export default {
       this.productForm.name = '';
       this.productForm.price = '';
       this.productForm.type_alcohol = '';
-      this.productForm.mixer.first = '';
-      this.productForm.mixer.second = '';
-      this.productForm.mixer.third = '';
-      this.productForm.mixer.fourth = '';
+      this.productForm.mixer = [];
       this.productForm.inventory = '';
       this.productForm.coverphoto = null;
     },

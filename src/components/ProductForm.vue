@@ -36,68 +36,19 @@
               </b-form-group>
               <span>{{ errors[0] }}</span>
             </ValidationProvider>
-            <!-- First Mixer -->
+            <!-- Mixer -->
             <ValidationProvider rules="required" v-slot="{ errors }">
               <b-form-group
-                id="mixer-first-group"
-                label="First Mixer:"
-                label-for="mixer-first-input"
+                id="mixer-group"
+                label="Select your Mixer:"
+                label-for="mixer-input"
               >
-              <b-form-input
-                  id="mixer-first-input"
-                  v-model="productForm.mixer.first"
-                  type="text"
-                  required
-                  placeholder="First Mixer"
-                ></b-form-input>
-              </b-form-group>
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!-- Second Mixer -->
-            <ValidationProvider v-slot="{ errors }">
-              <b-form-group
-                id="mixer-second-group"
-                label="Second Mixer (Optional):"
-                label-for="mixer-second-input"
-              >
-              <b-form-input
-                  id="mixer-second-input"
-                  v-model="productForm.mixer.second"
-                  type="text"
-                  placeholder="Second Mixer"
-                ></b-form-input>
-              </b-form-group>
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!-- Third Mixer -->
-            <ValidationProvider v-slot="{ errors }">
-              <b-form-group
-                id="mixer-third-group"
-                label="Third Mixer (Optional):"
-                label-for="mixer-third-input"
-              >
-              <b-form-input
-                  id="mixer-third-input"
-                  v-model="productForm.mixer.third"
-                  type="text"
-                  placeholder="Third Mixer"
-                ></b-form-input>
-              </b-form-group>
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!-- Fourth Mixer -->
-            <ValidationProvider v-slot="{ errors }">
-              <b-form-group
-                id="mixer-fourth-group"
-                label="Fourth Mixer (Optional):"
-                label-for="mixer-fourth-input"
-              >
-              <b-form-input
-                  id="mixer-fourth-input"
-                  v-model="productForm.mixer.fourth"
-                  type="text"
-                  placeholder="fourth Mixer"
-                ></b-form-input>
+              <b-form-checkbox-group
+                  id="mixer-input"
+                  v-model="productForm.mixer"
+                  :options="options"
+                  placeholder="Mixer"
+                ></b-form-checkbox-group>
               </b-form-group>
               <span>{{ errors[0] }}</span>
             </ValidationProvider>
@@ -114,23 +65,6 @@
                   type="text"
                   required
                   placeholder="What Type of Alcohol"
-                ></b-form-input>
-              </b-form-group>
-              <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <!-- Price -->
-            <ValidationProvider rules="required" v-slot="{ errors }">
-              <b-form-group
-                id="inventory-group"
-                label="Inventory:"
-                label-for="inventory-input"
-              >
-              <b-form-input
-                  id="inventory-input"
-                  v-model="productForm.inventory"
-                  type="text"
-                  required
-                  placeholder="Inventory..."
                 ></b-form-input>
               </b-form-group>
               <span>{{ errors[0] }}</span>
@@ -162,8 +96,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   props: ['isEdit', 'productForm', 'coverphotoURl', 'coverPhotoChange', 'requireImage'],
+  data() {
+    return {
+      options: [],
+    };
+  },
   methods: {
     saveProduct() {
       this.$emit('save-product');
@@ -175,6 +116,18 @@ export default {
       this.coverPhotoChange = true;
       this.$emit('coverSample', coverphotoURl, this.coverPhotoChange);
     },
+    cleanMixForCheckbox(mixers) {
+      const cleanMixers = [];
+      Object.values(mixers)
+        .map((mix) => cleanMixers.push({ text: mix.name, value: mix.public_id }));
+      return cleanMixers;
+    },
+  },
+  created() {
+    axios.get('all_mixers')
+      .then((response) => {
+        this.options = this.cleanMixForCheckbox(response.data);
+      });
   },
 };
 </script>

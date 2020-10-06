@@ -9,23 +9,10 @@
           md='6'
           lg='6'
         >
-          <b-img v-if="coverPhotoChange" :src="coverphotoURl"></b-img>
-          <b-img v-else :src="$store.state.apiurl + '/images/' + productForm.currentphoto"></b-img>
-        </b-col>
-        <b-col
-          xs='12'
-          sm='12'
-          md='6'
-          lg='6'
-        >
           <productform
             @save-product="onSubmit"
-            @coverSample="coverSample"
-            :requireImage="requireImage"
             :isEdit="true"
-            :coverPhotoChange="coverPhotoChange"
             :productForm="productForm"
-            :coverphotoURl="coverphotoURl"
           ></productform>
         </b-col>
       </b-row>
@@ -46,24 +33,13 @@ export default {
   data() {
     return {
       productForm: {
-        currentphoto: '',
-        coverphoto: null,
-        mixer: {
-          first: '',
-          second: '',
-          third: '',
-          fourth: '',
-        },
+        mixer: [],
         name: '',
         public_id: '',
         type_alcohol: '',
         price: '',
-        inventory: 0,
+        coverphoto: null,
       },
-      // Image Change //
-      requireImage: false,
-      coverPhotoChange: false,
-      coverphotoURl: '',
       // notification //
       showMessage: false,
       notification: '',
@@ -89,15 +65,11 @@ export default {
     },
     currentData(dirtyForm) {
       this.productForm.currentphoto = dirtyForm[0].coverphoto;
-      this.productForm.mixer.first = dirtyForm[0].mixer.first;
-      this.productForm.mixer.second = dirtyForm[0].mixer.second;
-      this.productForm.mixer.third = dirtyForm[0].mixer.third;
-      this.productForm.mixer.fourth = dirtyForm[0].mixer.fourth;
+      this.productForm.mixer = JSON.parse(dirtyForm[0].mixer);
       this.productForm.name = dirtyForm[0].name;
       this.productForm.public_id = dirtyForm[0].public_id;
       this.productForm.type_alcohol = dirtyForm[0].type_alcohol;
       this.productForm.price = dirtyForm[0].price;
-      this.productForm.inventory = dirtyForm[0].inventory;
     },
     onSubmit() {
       const payload = new FormData();
@@ -105,7 +77,6 @@ export default {
       payload.append('type_alcohol', this.productForm.type_alcohol);
       payload.append('mixer', JSON.stringify(this.productForm.mixer));
       payload.append('price', this.productForm.price);
-      payload.append('inventory', this.productForm.inventory);
       if (this.productForm.coverphoto !== null) {
         payload.append('coverphoto', this.productForm.coverphoto, this.productForm.coverphoto.name);
       }
@@ -117,9 +88,7 @@ export default {
     },
   },
   created() {
-    const productUrl = '/indv_product/'.concat(this.$route.params.name);
-
-    axios.get(productUrl)
+    axios.get('/indv_product/'.concat(this.$route.params.name))
       .then((response) => {
         const dirtyForm = Object.values(response.data);
         this.currentData(dirtyForm);
