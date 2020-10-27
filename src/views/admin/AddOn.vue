@@ -8,7 +8,7 @@
         md='12'
         lg='9'
       >
-        <h1>Add On</h1>
+        <h2>Add On</h2>
       </b-col>
       <b-col
         xs='12'
@@ -180,5 +180,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-</style>

@@ -2,38 +2,61 @@
   <div class="dashboard">
     <b-container fluid>
       <b-row>
-        <div v-for="(product, index) in products" :key="index">
-          <b-card
-          :title="product.name"
-          :img-src="apiUrl + '/images/' + product.coverphoto"
-          :img-alt="product.name"
-          img-top
-          style="max-width: 20rem; text-align: center;"
-          class="mb-2 product"
-          >
-            <div class="d-flex justify-content-center">
-              <b-button
-                :href="'/admin/product/' + product.name.replace(/\s/g, '-')"
-                variant="secondary"
-              >
-              View
-              </b-button>
-              <b-button
-                :href="'/admin/product/edit/' + product.name.replace(/\s/g, '-')"
-                variant="primary"
-              >
-              Edit
-              </b-button>
-              <b-button
-                variant="danger"
-                @click="deleteProduct(product.public_id )"
-              >
-                Delete
-              </b-button>
-            </div>
-          </b-card>
-        </div>
+        <b-col
+          sm="12"
+          md="12"
+          offset-lg="2"
+          lg="8"
+          offset-xl="2"
+          xl="8"
+        >
+          <h3>
+            <router-link to="/admin/add-product">Add Products</router-link>
+          </h3>
+        </b-col>
       </b-row>
+       <b-col
+         sm="12"
+         md="12"
+         offset-lg="2"
+         lg="8"
+         offset-xl="2"
+         xl="8"
+       >
+       <b-row>
+          <div v-for="(product, index) in products" :key="index">
+            <b-card
+            :title="product.name"
+            :img-src="apiUrl + '/images/' + product.coverphoto"
+            :img-alt="product.name"
+            img-top
+            style="max-width: 20rem; text-align: center;"
+            class="mb-2 product"
+            >
+              <div class="d-flex justify-content-center">
+                <b-button
+                  :href="'/admin/product/' + product.name.replace(/\s/g, '-')"
+                  variant="secondary"
+                >
+                View
+                </b-button>
+                <b-button
+                  :href="'/admin/product/edit/' + product.name.replace(/\s/g, '-')"
+                  variant="primary"
+                >
+                Edit
+                </b-button>
+                <b-button
+                  variant="danger"
+                  @click="deleteProduct(product.public_id )"
+                >
+                  Delete
+                </b-button>
+              </div>
+            </b-card>
+          </div>
+       </b-row>
+      </b-col>
     </b-container>
   </div>
 </template>

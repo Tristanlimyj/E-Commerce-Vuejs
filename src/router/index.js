@@ -18,6 +18,7 @@ import Orders from '../views/admin/Orders.vue';
 import Cart from '../views/admin/Cart.vue';
 import Mixer from '../views/admin/Mixer.vue';
 import AddOn from '../views/admin/AddOn.vue';
+import PromoCode from '../views/admin/PromoCode.vue';
 
 // Components
 Vue.use(VueRouter);
@@ -96,6 +97,11 @@ const routes = [
         path: 'addon',
         name: 'AddOn',
         component: AddOn,
+      },
+      {
+        path: 'promo-code',
+        name: 'PromoCode',
+        component: PromoCode,
       },
     ],
   },
