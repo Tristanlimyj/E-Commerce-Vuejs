@@ -61,7 +61,7 @@ export default {
   data: () => ({
     disable: false,
     loading: false,
-    publishableKey: process.env.VUE_APP_STRIPE_PUBLIC_KEY,
+    publishableKey: `${process.env.VUE_APP_STRIPE_PUBLIC_KEY}`,
     paymentIntent: '',
   }),
   methods: {
