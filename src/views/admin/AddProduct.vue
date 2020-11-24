@@ -5,18 +5,15 @@
       <b-col
         xs='12'
         sm='12'
-        md='12'
+        offset-md='3'
+        md='6'
+        offset-lg='3'
         lg='6'
-      >
-        <img v-if="coverPhotoChange" :src="coverphotoURl">
-      </b-col>
-      <b-col
-        xs='12'
-        sm='12'
-        md='12'
-        lg='6'
+        offset-xl='3'
+        xl='6'
       >
         <productform
+          id="add-product-form"
           @save-product="onSubmit"
           @coverSample="coverSample"
           :required="requireImage"
@@ -60,7 +57,7 @@ export default {
   },
   methods: {
     createProduct(payload) {
-      axios.post('new_product', payload, {
+      axios.post('/products/new_product', payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'x-access-token': this.$cookies.get('token'),
@@ -104,8 +101,7 @@ export default {
 };
 </script>
 <style scoped>
-  img {
-    width: 25rem;
-    height: 25rem;
+  #add-product-form {
+    padding: 2rem;
   }
 </style>

@@ -1,11 +1,13 @@
 <template>
   <div class="ProductForm">
+    <br>
         <ValidationObserver v-slot="{ handleSubmit }">
           <b-form @submit.prevent="handleSubmit(saveProduct)" enctype="multipart/form-data">
             <!-- Name -->
             <ValidationProvider rules="required" v-slot="{ errors }">
               <b-form-group
                 id="name-group"
+                class="form-component"
                 label="Name:"
                 label-for="name-input"
               >
@@ -23,6 +25,7 @@
             <ValidationProvider rules="required" v-slot="{ errors }">
               <b-form-group
                 id="price-group"
+                class="form-component"
                 label="Price:"
                 label-for="price-input"
               >
@@ -40,6 +43,7 @@
             <ValidationProvider rules="required" v-slot="{ errors }">
               <b-form-group
                 id="mixer-group"
+                class="form-component"
                 label="Select your Mixer:"
                 label-for="mixer-input"
               >
@@ -56,6 +60,7 @@
             <ValidationProvider rules="required" v-slot="{ errors }">
               <b-form-group
                 id="type-group"
+                class="form-component"
                 label="Alcohol Type:"
                 label-for="type-input"
               >
@@ -73,6 +78,7 @@
             <label for="coverphoto">Upload Cover Photo</label>
             <b-form-file
               id="coverphoto"
+              class="form-component"
               v-model="productForm.coverphoto"
               :required="requireImage"
               :state="Boolean(productForm.coverphoto)"
@@ -80,9 +86,17 @@
               placeholder="Choose a file or drop it here..."
               drop-placeholder="Drop file here..."
             ></b-form-file>
+            <a
+              v-if="coverPhotoChange"
+              :href="coverphotoURl"
+              target="_blank"
+            >View Image</a>
             <!-- Submit Button -->
-            <b-button-group>
-              <b-button v-if="isEdit"
+            <b-button-group
+              class="form-component"
+            >
+              <b-button
+                v-if="isEdit"
                 type="submit" variant="primary">Update
               </b-button>
               <b-button
@@ -119,15 +133,29 @@ export default {
     cleanMixForCheckbox(mixers) {
       const cleanMixers = [];
       Object.values(mixers)
-        .map((mix) => cleanMixers.push({ text: mix.name, value: mix.public_id }));
+        .map((mix) => cleanMixers.push({
+          text: mix.name,
+          value: {
+            text: mix.name,
+            value: mix.public_id,
+          },
+        }));
       return cleanMixers;
     },
   },
   created() {
-    axios.get('all_mixers')
+    axios.get('/mixers')
       .then((response) => {
         this.options = this.cleanMixForCheckbox(response.data);
       });
   },
 };
 </script>
+<style scoped>
+  .btn-group {
+    width: 100%;
+  }
+  .form-component {
+    padding-top: 0.5rem;
+  }
+</style>

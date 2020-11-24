@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     loginAttempt(payload) {
-      axios.post('user_login', payload)
+      axios.post('admin/user_login', payload)
         .then((response) => {
           const token = String(response.data.token);
 

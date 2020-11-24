@@ -4,10 +4,15 @@
     <div class="container-fluid">
       <b-row>
         <b-col
-          xs='12'
+          class="edit-form"
+          col='12'
           sm='12'
+          offset-md='3'
           md='6'
+          offset-lg='3'
           lg='6'
+          offset-xl='3'
+          xl='6'
         >
           <productform
             @save-product="onSubmit"
@@ -47,7 +52,7 @@ export default {
   },
   methods: {
     editProduct(payload) {
-      axios.put('update_product/'.concat(this.productForm.public_id), payload, {
+      axios.put('products/update_product/'.concat(this.productForm.public_id), payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'x-access-token': this.$cookies.get('token'),
@@ -88,7 +93,7 @@ export default {
     },
   },
   created() {
-    axios.get('/indv_product/'.concat(this.$route.params.name))
+    axios.get('products/indv_product/'.concat(this.$route.params.name))
       .then((response) => {
         const dirtyForm = Object.values(response.data);
         this.currentData(dirtyForm);
@@ -97,6 +102,9 @@ export default {
 };
 </script>
 <style scoped>
+.edit-form {
+  padding: 3rem;
+}
 img {
   height: 25rem;
   width: 25rem;

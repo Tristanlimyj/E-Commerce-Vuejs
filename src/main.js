@@ -11,10 +11,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 // Font Awesome Icons
 import { dom, library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faTelegram } from '@fortawesome/free-brands-svg-icons';
-import { faGlassCheers, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faGlassCheers, faMapMarkerAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 // Vee-Validate
-import { ValidationObserver, ValidationProvider, extend } from 'vee-validate';
+import {
+  ValidationObserver, ValidationProvider, extend,
+} from 'vee-validate';
 import {
   alpha, required, email, is, digits,
 } from 'vee-validate/dist/rules';
@@ -50,21 +52,39 @@ Vue.use(VueCookies);
 // Un Comment this when you are done
 // Vue.$cookies.config('20min', '/', '.thealchemistalcohol.com', true, 'Lax'); //
 // Font Awesome
-library.add(faGlassCheers, faMapMarkerAlt);
-library.add(faTelegram);
+library.add(faGlassCheers, faMapMarkerAlt, faTimes, faCheckCircle, faTimesCircle);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 dom.watch();
 
 // Vee-Validate
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
+
+extend('postal', {
+  message: 'Invalid postal code',
+  validate: ((value) => {
+    if (Number.isInteger(parseInt(value, 10)) && value.toString().length === 6) {
+      return true;
+    }
+    return false;
+  }),
+});
+extend('handphoneNumber', {
+  message: 'Invalid handphone number',
+  validate: ((value) => {
+    if (Number.isInteger(parseInt(value, 10)) && value.toString().length <= 8) {
+      return true;
+    }
+    return false;
+  }),
+});
 extend('alpha', {
   ...alpha,
-  message: 'Please input a Alpha numeric input',
+  message: 'The input that you have written is invalid',
 });
 extend('digits', {
   ...digits,
-  message: 'Please input a number',
+  message: 'Please input a valid number',
 });
 extend('email', {
   ...email,

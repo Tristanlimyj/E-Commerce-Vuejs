@@ -81,7 +81,7 @@ export default {
       this.createMix(payload);
     },
     createMix(payload) {
-      axios.post('new_mixer', payload, {
+      axios.post('mixers/new_mixer', payload, {
         headers: {
           'x-access-token': this.$cookies.get('token'),
         },
@@ -100,7 +100,7 @@ export default {
     },
     // Deleting a Mixer
     deleteMixer(publicId) {
-      axios.delete('remove_mixer/'.concat(publicId), {
+      axios.delete('mixers/remove_mixer/'.concat(publicId), {
         headers: {
           'x-access-token': this.$cookies.get('token'),
         },
@@ -118,7 +118,7 @@ export default {
     },
     // Refreshing Data
     updateMixers() {
-      axios.get('all_mixers')
+      axios.get('mixers')
         .then((response) => {
           this.mixers = response.data;
         });

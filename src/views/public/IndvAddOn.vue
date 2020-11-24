@@ -2,8 +2,8 @@
   <div class="indv-pro">
     <addToCart
       :product='product'
-      liquorOrAddOn='liquor'
-      addToCartUrl='/cart/add-to-cart-liquor'
+      liquorOrAddOn=''
+      addToCartUrl='cart/add-to-cart-add-on'
     />
   </div>
 </template>
@@ -21,16 +21,13 @@ export default {
     };
   },
   created() {
-    let productUrl = 'products/indv_product/';
+    let productUrl = 'add-on/indv_add_on/';
     productUrl += this.$route.params.name;
 
     Axios.get(productUrl)
       .then((response) => {
         this.product = response.data;
-        this.product = this.product.returned_product;
-      })
-      .catch(() => {
-        this.product = false;
+        this.product = this.product.indv_add_on;
       });
   },
 };

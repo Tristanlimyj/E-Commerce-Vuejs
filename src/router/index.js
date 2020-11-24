@@ -4,21 +4,27 @@ import store from '../store';
 
 // Routes Public
 import Home from '../views/public/Home.vue';
+import Products from '../views/public/Products.vue';
+import AddOnPublic from '../views/public/AddOnPublic.vue';
 import IndvPro from '../views/public/IndvPro.vue';
+import IndvAddOn from '../views/public/IndvAddOn.vue';
+import Cart from '../views/public/Cart.vue';
+import Checkout from '../views/public/Checkout.vue';
+import PaymentSuccess from '../views/public/PaymentSuccess.vue';
+import PaymentError from '../views/public/PaymentError.vue';
 
 // Admin Routes
 import Admin from '../views/admin/Admin.vue';
 import AddProduct from '../views/admin/AddProduct.vue';
 import EditProduct from '../views/admin/EditProduct.vue';
-import Feedback from '../views/admin/Feedback.vue';
 import Dashboard from '../views/admin/Dashboard.vue';
 import Login from '../views/admin/Login.vue';
-import Registration from '../views/admin/Registration.vue';
-import Orders from '../views/admin/Orders.vue';
-import Cart from '../views/admin/Cart.vue';
 import Mixer from '../views/admin/Mixer.vue';
-import AddOn from '../views/admin/AddOn.vue';
+import AddOnPrivate from '../views/admin/AddOn.vue';
+import EditAddOn from '../views/admin/EditAddOn.vue';
 import PromoCode from '../views/admin/PromoCode.vue';
+import DeliveryOptions from '../views/admin/DeliveryOptions.vue';
+import UpdateDeliveryOption from '../views/admin/UpdateDeliveryOption.vue';
 
 // Components
 Vue.use(VueRouter);
@@ -26,13 +32,53 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart,
+  },
+  {
+    path: '/products',
+    name: 'products',
+    component: Products,
+  },
+  {
+    path: '/add-on',
+    name: 'AddOnPublic',
+    component: AddOnPublic,
+  },
+  {
+    path: '/products/:name',
+    name: 'IndvPro',
+    component: IndvPro,
+  },
+  {
+    path: '/add-on/:name',
+    name: 'IndvAddOn',
+    component: IndvAddOn,
   },
   {
     path: '/login',
     name: 'login',
     component: Login,
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout,
+  },
+  {
+    path: '/payment/success/:orderId',
+    name: 'PaymentSuccess',
+    component: PaymentSuccess,
+  },
+  {
+    path: '/payment/error',
+    name: 'PaymentError',
+    component: PaymentError,
   },
   {
     path: '/admin',
@@ -54,11 +100,6 @@ const routes = [
         component: Dashboard,
       },
       {
-        path: 'registration',
-        name: 'registration',
-        component: Registration,
-      },
-      {
         path: 'add-product',
         name: 'AddProduct',
         component: AddProduct,
@@ -69,39 +110,34 @@ const routes = [
         component: EditProduct,
       },
       {
-        path: 'feedback',
-        name: 'Feedback',
-        component: Feedback,
-      },
-      {
-        path: 'cart',
-        name: 'Cart',
-        component: Cart,
-      },
-      {
-        path: 'orders',
-        name: 'Orders',
-        component: Orders,
-      },
-      {
-        path: 'product/:name',
-        name: 'IndvPro',
-        component: IndvPro,
-      },
-      {
         path: 'mixer',
         name: 'Mixer',
         component: Mixer,
       },
       {
         path: 'addon',
-        name: 'AddOn',
-        component: AddOn,
+        name: 'AddOnPrivate',
+        component: AddOnPrivate,
+      },
+      {
+        path: 'addon/edit/:name',
+        name: 'EditAddOn',
+        component: EditAddOn,
       },
       {
         path: 'promo-code',
         name: 'PromoCode',
         component: PromoCode,
+      },
+      {
+        path: 'delivery-options',
+        name: 'DeliveryOptions',
+        component: DeliveryOptions,
+      },
+      {
+        path: 'delivery-options/update/:publicId',
+        name: 'UpdateDeliveryOption',
+        component: UpdateDeliveryOption,
       },
     ],
   },

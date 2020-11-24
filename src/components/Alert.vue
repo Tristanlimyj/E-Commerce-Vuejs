@@ -1,11 +1,17 @@
 <template>
   <div id="alert">
-    <b-alert show variant="primary">{{ message }}</b-alert>
+    <b-alert show :variant=typeAlert>{{ message }}</b-alert>
   </div>
 </template>
 <script>
 export default {
   name: 'alert',
-  props: ['message'],
+  props: ['message', 'typeAlert'],
 };
 </script>
+<style scopped>
+  #alert{
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
