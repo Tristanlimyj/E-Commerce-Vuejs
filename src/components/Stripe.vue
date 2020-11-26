@@ -26,7 +26,7 @@
       <b-button
         type='submit'
         class="payment-btn"
-        @click="disable=true"
+        @click="sendPayment"
         v-if="!disable && formComplete"
         pill
       >
@@ -66,12 +66,15 @@ export default {
     paymentIntent: '',
   }),
   methods: {
+    sendPayment() {
+      this.loading = true;
+      this.$emit('disableForm');
+      this.submit();
+    },
     submit() {
-      console.log('123');
       this.$refs.elementsRef.submit();
     },
     tokenCreated(token) {
-      this.$emit('disableForm');
       const charge = {
         paymentIntent: this.paymentIntent,
         source: token.id,
