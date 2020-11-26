@@ -21,7 +21,6 @@
         >
           <h3>Payment Form</h3>
           <ValidationObserver v-slot="{ valid }">
-            <b-form @submit.prevent >
                   <b-form-group
                     id="name-input-group"
                     label="Name:"
@@ -91,7 +90,6 @@
                 :orderDetails="customerForm"
                 @disableForm="disable=true"
               />
-            </b-form>
           </ValidationObserver>
         </b-col>
       </b-row>

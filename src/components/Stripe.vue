@@ -1,6 +1,6 @@
 <template>
   <div class="stripe">
-    <StripeElements
+    <stripe-elements
       ref="elementsRef"
       :pk="publishableKey"
       :amount="totalCost"
@@ -13,7 +13,6 @@
        <b-button
         class="payment-btn"
         type='submit'
-        @submit.prevent
         v-if="formComplete && disable"
         pill
         disabled
@@ -27,8 +26,7 @@
       <b-button
         class="payment-btn"
         type='submit'
-        @click="sendPayment"
-        @submit.prevent
+        @click.prevent="submit"
         v-if="!disable && formComplete"
         pill
       >
@@ -72,6 +70,7 @@ export default {
       this.$emit('disableForm');
     },
     submit() {
+      this.sendPayment();
       this.$refs.elementsRef.submit();
     },
     tokenCreated(token) {
