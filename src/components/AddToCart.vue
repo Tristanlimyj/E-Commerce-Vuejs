@@ -57,7 +57,9 @@
           </h2>
           <h5 id="product-price"><strong>Price:</strong> ${{ this.product.price }}</h5>
 
-          <b-form @submit.prevent="addToCart">
+          <b-form
+            class="product-form"
+            @submit.prevent="addToCart">
             <b-form-group
               v-if="liquorOrAddOn === 'liquor'"
               id="mixer-selection"
@@ -148,9 +150,8 @@ export default {
         payload.cartId = this.$cookies.get('cartId');
 
         Axios.post(this.addToCartUrl, payload)
-          .then((res) => {
-            const returnValue = res.data;
-            this.showMessage(returnValue.message, 'success');
+          .then(() => {
+            this.$router.push({ name: 'Cart' });
           });
       } else {
         const payload = this.payloadCreate();
@@ -159,7 +160,7 @@ export default {
           .then((res) => {
             const returnValue = res.data;
             this.$cookies.set('cartId', returnValue.cart_id, '7d');
-            this.showMessage(returnValue.message, 'success');
+            this.$router.push({ name: 'Cart' });
           })
           .catch((err) => {
             this.showMessage(err.data, 'danger');
@@ -193,15 +194,22 @@ export default {
   .product-info {
     margin-top: 2.5rem !important;
     min-height: 37vh !important;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
   }
   .btn {
     margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
   }
   .footer-container {
     padding-top: 0px;
   }
 }
-
+.product-form {
+  text-align: center;
+}
 .product-view {
   margin-top: 1.5rem;
   min-height: 60vh;

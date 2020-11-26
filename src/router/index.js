@@ -12,6 +12,7 @@ import Cart from '../views/public/Cart.vue';
 import Checkout from '../views/public/Checkout.vue';
 import PaymentSuccess from '../views/public/PaymentSuccess.vue';
 import PaymentError from '../views/public/PaymentError.vue';
+import ErrorPage from '../views/public/ErrorPage.vue';
 
 // Admin Routes
 import Admin from '../views/admin/Admin.vue';
@@ -140,6 +141,11 @@ const routes = [
         component: UpdateDeliveryOption,
       },
     ],
+  },
+  {
+    path: '*',
+    name: 'ErrorPage',
+    component: ErrorPage,
   },
 ];
 

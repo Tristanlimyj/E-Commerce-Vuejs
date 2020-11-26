@@ -1,6 +1,6 @@
 <template>
     <div id="public-nav">
-      <div class="container-fluid">
+      <div class="container-fluid inner-nav-container">
         <b-row>
           <b-col
             xs='12'
@@ -39,6 +39,10 @@
     border-width: 2.5px;
     border-color: #e5e5e5;
     background-color: white;
+  }
+  .inner-nav-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
     #public-nav a {
     color: #111;

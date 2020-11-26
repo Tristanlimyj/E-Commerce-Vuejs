@@ -6,6 +6,7 @@
     <b-container class='search-bar-filter' fluid>
       <b-row>
         <b-col
+          class="search-bar"
           cols="12"
           sm="12"
           md="12"
@@ -76,6 +77,9 @@
           :img-src="$store.state.apiurl + '/images/' + product.coverphoto"
           :title="callTitlelize(product.name)"
           >
+          <b-card-text>
+            Price: ${{ product.price }}
+          </b-card-text>
             <template #footer>
               <b-button class="add-to-cart-btn" pill>Purchase</b-button>
             </template>
@@ -158,8 +162,14 @@ export default {
 <style scoped>
 @media only screen and (max-width: 720px) {
     .card-body {
-        height: 10vh;
+        height: 15vh;
     }
+    .filter-checkbox {
+    padding: 0px 0.8vw 0.4vh 0.8vw !important;
+  }
+  .search-bar {
+    margin-bottom: 1.25rem;
+  }
 }
   .search-bar-filter {
     margin-top: 0.5rem;
@@ -167,6 +177,7 @@ export default {
   }
   .card-title {
     font-size: 1rem;
+    height: 6vh;
     color: black !important;
   }
   a:hover {
@@ -179,6 +190,10 @@ export default {
     padding: 0px;
     padding-top: 1rem;
     text-align: center;
+  }
+  .card-text {
+    color: black;
+    margin-bottom: 1vh;
   }
   .card-footer{
       padding: 0px!important;

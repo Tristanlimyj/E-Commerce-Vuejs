@@ -351,6 +351,9 @@ export default {
     min-height: 85vh;
     margin-top: 2rem;
   }
+  .deliver-options {
+  text-align: center;
+}
 
   #summary {
     margin-top: 4rem;
