@@ -139,7 +139,7 @@ export default {
         }
         if (
           this.searchInput
-          && (this.products[i].name.includes(this.searchInput)
+          && (this.products[i].name.includes(this.searchInput.toLowerCase())
           || this.products[i].category.includes(this.searchInput))
         ) {
           results.push(this.products[i]);
