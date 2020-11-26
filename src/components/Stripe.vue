@@ -67,6 +67,7 @@ export default {
   }),
   methods: {
     submit() {
+      console.log('123');
       this.$refs.elementsRef.submit();
     },
     tokenCreated(token) {
