@@ -2,6 +2,7 @@
   <div class="Products">
     <ShowCaseProducts
       :products='products'
+      :loading='loading'
       link='products/'
     />
   </div>
@@ -18,12 +19,14 @@ export default {
   data() {
     return {
       products: [],
+      loading: true,
     };
   },
   created() {
     Axios.get('products')
       .then((res) => {
         const returnedData = res.data;
+        this.loading = false;
         this.products = returnedData.product_info;
       });
   },

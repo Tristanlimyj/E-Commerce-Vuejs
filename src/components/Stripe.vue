@@ -34,6 +34,7 @@
       </b-button>
       <!-- When the form is still incomplete-->
       <b-button
+        type='submit'
         class="payment-btn"
         pill
         v-if="!formComplete && totalCost"

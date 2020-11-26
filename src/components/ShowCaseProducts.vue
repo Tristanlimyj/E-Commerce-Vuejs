@@ -56,7 +56,12 @@
           v-if='filterdProducts.length === 0'
           id = 'no-product'
         >
-          <h5>We are unable to find the what you were looking for:(</h5>
+          <h5
+            v-if="!loading"
+          >We are unable to find the what you were looking for:(</h5>
+          <h5
+            v-if="loading"
+          >Loading...</h5>
         </b-col>
       <b-col
         v-for="product in filterdProducts" :key="product.public_id"
@@ -95,7 +100,7 @@ export default {
     PublicNav,
     PublicFooter,
   },
-  props: ['products', 'link'],
+  props: ['products', 'link', 'loading'],
   data() {
     return {
       searchInput: '',
