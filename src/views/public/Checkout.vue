@@ -21,7 +21,7 @@
         >
           <h3>Payment Form</h3>
           <ValidationObserver v-slot="{ valid }">
-            <b-form>
+            <b-form @submit.prevent >
                   <b-form-group
                     id="name-input-group"
                     label="Name:"

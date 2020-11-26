@@ -11,8 +11,9 @@
     <div class="payment-btn-wrapper">
       <!-- Show When Loading -->
        <b-button
-        type='submit'
         class="payment-btn"
+        type='submit'
+        @submit.prevent
         v-if="formComplete && disable"
         pill
         disabled
@@ -24,9 +25,10 @@
       </b-button>
       <!-- Show when form is completed-->
       <b-button
-        type='submit'
         class="payment-btn"
+        type='submit'
         @click="sendPayment"
+        @submit.prevent
         v-if="!disable && formComplete"
         pill
       >
@@ -34,7 +36,6 @@
       </b-button>
       <!-- When the form is still incomplete-->
       <b-button
-        type='submit'
         class="payment-btn"
         pill
         v-if="!formComplete && totalCost"
@@ -67,9 +68,8 @@ export default {
   }),
   methods: {
     sendPayment() {
-      this.loading = true;
+      this.disable = true;
       this.$emit('disableForm');
-      this.submit();
     },
     submit() {
       this.$refs.elementsRef.submit();
