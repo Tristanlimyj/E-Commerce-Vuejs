@@ -3,8 +3,12 @@
     <router-view/>
   </div>
 </template>
+<script>
+export default {
 
-<style>
+};
+</script>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap');
 
 #app {
@@ -12,13 +16,13 @@
   color: #111;
   min-height: 100vh;
 }
- .nav-bar {
-    margin: 0px;
-    width: 100%;
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-  }
+.nav-bar {
+   margin: 0px;
+   width: 100%;
+   position: sticky;
+   top: 0px;
+   z-index: 1;
+ }
 .footer-container {
     position: static;
     width: 100%;

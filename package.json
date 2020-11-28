@@ -27,6 +27,7 @@
     "vee-validate": "^3.4.0",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.3",
+    "vue-gtag": "^1.10.0",
     "vue-jwt-decode": "^0.1.0",
     "vue-router": "^3.2.0",
     "vue-stripe-checkout": "^3.5.13",

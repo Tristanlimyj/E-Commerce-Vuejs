@@ -11,8 +11,21 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 // Font Awesome Icons
 import { dom, library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faGlassCheers, faMapMarkerAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import {
+  faGlassCheers,
+  faMapMarkerAlt,
+  faTimes,
+  faEnvelope,
+  faMobileAlt,
+  faCouch,
+  faTruck,
+  faClock,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from '@fortawesome/free-regular-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 // Vee-Validate
 import {
   ValidationObserver, ValidationProvider, extend,
@@ -24,6 +37,8 @@ import {
 import axios from 'axios';
 // Vue Cookies
 import VueCookies from 'vue-cookies';
+// Import GTAG
+import VueGtag from 'vue-gtag';
 // Vue Imports
 import Vue from 'vue';
 import App from './App.vue';
@@ -31,6 +46,10 @@ import router from './router';
 // Vuex Import
 import store from './store';
 
+// Vue Use GTAG
+Vue.use(VueGtag, {
+  config: { id: 'G-VN4BNWPCZC' },
+});
 // ENV Variable
 require('dotenv').config();
 // Axios Defaults
@@ -49,10 +68,21 @@ Vue.use(PortalVue);
 
 // Vue Cookies
 Vue.use(VueCookies);
-// Un Comment this when you are done
-// Vue.$cookies.config('20min', '/', '.thealchemistalcohol.com', true, 'Lax'); //
+Vue.$cookies.config('20min', '/', `${process.env.VUE_APP_CURRENT_URL}`, true, 'Lax');
 // Font Awesome
-library.add(faGlassCheers, faMapMarkerAlt, faTimes, faCheckCircle, faTimesCircle);
+library.add(
+  faGlassCheers,
+  faMapMarkerAlt,
+  faTimes,
+  faCheckCircle,
+  faTimesCircle,
+  faEnvelope,
+  faMobileAlt,
+  faInstagram,
+  faCouch,
+  faTruck,
+  faClock,
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 dom.watch();
 
@@ -63,7 +93,10 @@ Vue.component('ValidationObserver', ValidationObserver);
 extend('postal', {
   message: 'Invalid postal code',
   validate: ((value) => {
-    if (Number.isInteger(parseInt(value, 10)) && value.toString().length === 6) {
+    const cleanInput = value.trim();
+    const postalNoS = new RegExp(/^s\d{6}$/i);
+    const postalNum = new RegExp(/^\d{6}$/i);
+    if (postalNoS.test(cleanInput) || postalNum.test(cleanInput)) {
       return true;
     }
     return false;

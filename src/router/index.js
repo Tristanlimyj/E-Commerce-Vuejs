@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import store from '../store';
 
 // Routes Public
+import Public from '../views/public/Public.vue';
 import Home from '../views/public/Home.vue';
 import Products from '../views/public/Products.vue';
 import AddOnPublic from '../views/public/AddOnPublic.vue';
@@ -12,6 +13,9 @@ import Cart from '../views/public/Cart.vue';
 import Checkout from '../views/public/Checkout.vue';
 import PaymentSuccess from '../views/public/PaymentSuccess.vue';
 import PaymentError from '../views/public/PaymentError.vue';
+import ContactPage from '../views/public/ContactPage.vue';
+import TermsofService from '../views/public/TermsofService.vue';
+import PrivacyPolicy from '../views/public/PrivacyPolicy.vue';
 import ErrorPage from '../views/public/ErrorPage.vue';
 
 // Admin Routes
@@ -33,53 +37,75 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    component: Public,
+
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: Home,
+      },
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: Cart,
+      },
+      {
+        path: '/products',
+        name: 'products',
+        component: Products,
+      },
+      {
+        path: '/add-on',
+        name: 'AddOnPublic',
+        component: AddOnPublic,
+      },
+      {
+        path: '/products/:name',
+        name: 'IndvPro',
+        component: IndvPro,
+      },
+      {
+        path: '/add-on/:name',
+        name: 'IndvAddOn',
+        component: IndvAddOn,
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: Login,
+      },
+      {
+        path: '/checkout',
+        name: 'Checkout',
+        component: Checkout,
+      },
+      {
+        path: '/payment/success/:orderId',
+        name: 'PaymentSuccess',
+        component: PaymentSuccess,
+      },
+      {
+        path: '/payment/error',
+        name: 'PaymentError',
+        component: PaymentError,
+      },
+    ],
   },
   {
-    path: '/cart',
-    name: 'Cart',
-    component: Cart,
+    path: '/contact',
+    name: 'ContactPage',
+    component: ContactPage,
   },
   {
-    path: '/products',
-    name: 'products',
-    component: Products,
+    path: '/terms-of-service',
+    name: 'TermsofService',
+    component: TermsofService,
   },
   {
-    path: '/add-on',
-    name: 'AddOnPublic',
-    component: AddOnPublic,
-  },
-  {
-    path: '/products/:name',
-    name: 'IndvPro',
-    component: IndvPro,
-  },
-  {
-    path: '/add-on/:name',
-    name: 'IndvAddOn',
-    component: IndvAddOn,
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-  },
-  {
-    path: '/checkout',
-    name: 'Checkout',
-    component: Checkout,
-  },
-  {
-    path: '/payment/success/:orderId',
-    name: 'PaymentSuccess',
-    component: PaymentSuccess,
-  },
-  {
-    path: '/payment/error',
-    name: 'PaymentError',
-    component: PaymentError,
+    path: '/privacy-policy',
+    name: 'PrivacyPolicy',
+    component: PrivacyPolicy,
   },
   {
     path: '/admin',

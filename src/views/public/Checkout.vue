@@ -1,8 +1,5 @@
 <template>
   <div class="checkout">
-    <b-container class="nav-bar" fluid>
-      <PublicNav/>
-    </b-container>
     <b-container
       id="form-containter"
       fluid
@@ -94,23 +91,16 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footer-container" fluid>
-      <PublicFooter/>
-    </b-container>
   </div>
 </template>
 
 <script>
 import Axios from 'axios';
 import Stripe from '../../components/Stripe.vue';
-import PublicNav from '../../components/PublicNav.vue';
-import PublicFooter from '../../components/PublicFooter.vue';
 
 export default {
   components: {
     Stripe,
-    PublicNav,
-    PublicFooter,
   },
   data() {
     return {

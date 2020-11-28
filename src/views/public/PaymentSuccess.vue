@@ -1,8 +1,5 @@
 <template>
   <div id="payment-success">
-    <b-container class="nav-bar" fluid>
-      <PublicNav/>
-    </b-container>
     <b-container class="success" fluid>
       <b-row>
         <b-col
@@ -40,6 +37,7 @@
               v-if="orderInfo.bundle && !error"
             >
               <ol
+                class="bundles-ordered"
                 v-for="bundle in orderInfo.bundle"
                 :key="bundle"
               >
@@ -82,23 +80,14 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footer-container" fluid>
-      <PublicFooter/>
-    </b-container>
   </div>
 </template>
 
 <script>
 import Axios from 'axios';
-import PublicNav from '../../components/PublicNav.vue';
-import PublicFooter from '../../components/PublicFooter.vue';
 import { stringFunctions as strfunction } from '../../commonFunctions';
 
 export default {
-  components: {
-    PublicNav,
-    PublicFooter,
-  },
   data() {
     return {
       paymentStatus: '',
@@ -130,6 +119,9 @@ export default {
   padding-top: 4vh;
   text-align: center;
   min-height: 80vh;
+}
+.bundles-ordered {
+  list-style-type: none;
 }
 .payment-icon {
   color: #4BB543;

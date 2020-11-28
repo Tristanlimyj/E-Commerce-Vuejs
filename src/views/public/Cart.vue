@@ -1,8 +1,5 @@
 <template>
   <div class="Cart">
-    <b-container class="nav-bar" fluid>
-      <PublicNav/>
-    </b-container>
     <b-container class="cart-section" fluid>
       <b-row>
         <b-col
@@ -178,23 +175,16 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footer-container" fluid>
-      <PublicFooter/>
-    </b-container>
   </div>
 </template>
 <script>
 import Axios from 'axios';
-import PublicNav from '../../components/PublicNav.vue';
-import PublicFooter from '../../components/PublicFooter.vue';
 import Alert from '../../components/Alert.vue';
 import CartIndvPro from '../../components/CartIndvPro.vue';
 import { stringFunctions as strfunction } from '../../commonFunctions';
 
 export default {
   components: {
-    PublicNav,
-    PublicFooter,
     Alert,
     CartIndvPro,
   },

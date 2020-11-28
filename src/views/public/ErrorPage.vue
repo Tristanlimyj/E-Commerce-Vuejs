@@ -1,8 +1,5 @@
 <template>
   <div id="payment-success">
-    <b-container class="nav-bar" fluid>
-      <PublicNav/>
-    </b-container>
     <b-container class="error-page" fluid>
       <b-row>
         <b-col
@@ -30,22 +27,10 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footer-container" fluid>
-      <PublicFooter/>
-    </b-container>
   </div>
 </template>
 
 <script>
-import PublicNav from '../../components/PublicNav.vue';
-import PublicFooter from '../../components/PublicFooter.vue';
-
-export default {
-  components: {
-    PublicNav,
-    PublicFooter,
-  },
-};
 </script>
 
 <style scoped>

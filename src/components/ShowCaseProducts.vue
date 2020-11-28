@@ -1,8 +1,5 @@
 <template>
   <div class="Products">
-    <b-container class="nav-bar" fluid>
-      <PublicNav/>
-    </b-container>
     <b-container class='search-bar-filter' fluid>
       <b-row>
         <b-col
@@ -88,22 +85,13 @@
       </b-col>
       </b-row>
     </b-container>
-    <b-container class="footer-container" fluid>
-      <PublicFooter/>
-    </b-container>
   </div>
 </template>
 
 <script>
-import PublicNav from './PublicNav.vue';
-import PublicFooter from './PublicFooter.vue';
 import { stringFunctions as strfunction } from '../commonFunctions';
 
 export default {
-  components: {
-    PublicNav,
-    PublicFooter,
-  },
   props: ['products', 'link', 'loading'],
   data() {
     return {

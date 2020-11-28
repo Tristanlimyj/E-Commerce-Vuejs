@@ -1,12 +1,33 @@
 <template>
 <div id="footer">
     <b-container fluid class="description">
+        <h5>
+          We aim to be the most convienent alcohol delivery service in Singapore
+        </h5>
         <p>
-            The most convienent alcohol delivery company in Singapore!
+          <router-link
+            class="footer-links"
+            :to="{ name: 'ContactPage' }"
+          >
+            Contact Details
+          </router-link>
         </p>
-        <p>FAQs</p>
-        <p>Terms of Service</p>
-        <p>Contact Us</p>
+        <p>
+          <router-link
+            class="footer-links"
+            :to="{ name: 'TermsofService' }"
+          >
+            Terms of Service
+          </router-link>
+        </p>
+        <p>
+          <router-link
+            class="footer-links"
+            :to="{ name: 'PrivacyPolicy' }"
+          >
+            Privacy Policy
+          </router-link>
+        </p>
     </b-container>
 </div>
 </template>
@@ -16,8 +37,10 @@
         background-color:#060606 ;
         padding: 1rem;
     }
-
     .description {
         text-align: center;
+    }
+    .description a{
+        color: #fbfcfc;
     }
 </style>
