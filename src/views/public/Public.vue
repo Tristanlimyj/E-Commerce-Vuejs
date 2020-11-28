@@ -50,9 +50,18 @@ export default {
 </script>
 <style scoped>
 .nav-bar {
-  padding: 0px!important;
-}
+   margin: 0px;
+   width: 100%;
+   position: sticky;
+   top: 0px;
+   z-index: 1;
+ }
 .footer-container {
-  padding: 0px!important;
-}
+    position: static;
+    width: 100%;
+    padding: 2rem 0px 1rem;
+    bottom: 0;
+    padding-bottom: 0;
+  }
+
 </style>
