@@ -97,6 +97,7 @@ export default {
   },
   methods: {
     enterSite() {
+      console.log(process.env.VUE_APP_CURRENT_URL);
       this.$cookies.set('ofDrinkingAge', true, '1y');
       this.$emit('legal', false);
     },
