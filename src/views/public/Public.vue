@@ -49,4 +49,10 @@ export default {
 };
 </script>
 <style scoped>
+.nav-bar {
+  padding: 0px!important;
+}
+.footer-container {
+  padding: 0px!important;
+}
 </style>
