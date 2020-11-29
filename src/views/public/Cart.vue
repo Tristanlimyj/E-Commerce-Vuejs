@@ -320,7 +320,7 @@ export default {
     },
     totalCost() {
       let total = this.subTotal;
-      if (this.customerCart.promo_code) total += this.customerCart.promo_code.value;
+      if (this.customerCart.promo_code) total -= this.customerCart.promo_code.value;
       if (this.customerCart.delivery_method) total += this.customerCart.delivery_method.price;
       return total;
     },
