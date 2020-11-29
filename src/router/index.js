@@ -71,11 +71,6 @@ const routes = [
         component: IndvAddOn,
       },
       {
-        path: '/login',
-        name: 'login',
-        component: Login,
-      },
-      {
         path: '/checkout',
         name: 'Checkout',
         component: Checkout,
@@ -106,6 +101,11 @@ const routes = [
     path: '/privacy-policy',
     name: 'PrivacyPolicy',
     component: PrivacyPolicy,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
   },
   {
     path: '/admin',
