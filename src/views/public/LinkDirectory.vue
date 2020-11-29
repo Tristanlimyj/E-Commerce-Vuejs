@@ -28,9 +28,9 @@
                 @click="redirect(link.name,link.url)"
                 pill
               >
-                <h4>
+                <h5>
                   {{ callTitlelize(link.name) }}
-                </h4>
+                </h5>
               </b-button>
             </div>
          </div>
