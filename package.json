@@ -22,6 +22,7 @@
     "dotenv": "^8.2.0",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
+    "express-sslify": "^1.2.0",
     "portal-vue": "^2.1.7",
     "ssl-express-www": "^3.0.7",
     "vee-validate": "^3.4.0",
