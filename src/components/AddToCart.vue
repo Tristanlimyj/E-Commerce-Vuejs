@@ -97,15 +97,11 @@
 </template>
 <script>
 import Axios from 'axios';
-import PublicNav from './PublicNav.vue';
-import PublicFooter from './PublicFooter.vue';
 import Alert from './Alert.vue';
 import { stringFunctions as strfunction } from '../commonFunctions';
 
 export default {
   components: {
-    PublicNav,
-    PublicFooter,
     Alert,
   },
   props: ['product', 'liquorOrAddOn', 'addToCartUrl'],
