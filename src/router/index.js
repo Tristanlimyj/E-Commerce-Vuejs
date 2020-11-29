@@ -14,6 +14,7 @@ import Checkout from '../views/public/Checkout.vue';
 import PaymentSuccess from '../views/public/PaymentSuccess.vue';
 import PaymentError from '../views/public/PaymentError.vue';
 import ContactPage from '../views/public/ContactPage.vue';
+import LinkDirectory from '../views/public/LinkDirectory.vue';
 import TermsofService from '../views/public/TermsofService.vue';
 import PrivacyPolicy from '../views/public/PrivacyPolicy.vue';
 import ErrorPage from '../views/public/ErrorPage.vue';
@@ -30,6 +31,7 @@ import EditAddOn from '../views/admin/EditAddOn.vue';
 import PromoCode from '../views/admin/PromoCode.vue';
 import DeliveryOptions from '../views/admin/DeliveryOptions.vue';
 import UpdateDeliveryOption from '../views/admin/UpdateDeliveryOption.vue';
+import AdminLinkDirectory from '../views/admin/LinkDirectory.vue';
 
 // Components
 Vue.use(VueRouter);
@@ -108,6 +110,11 @@ const routes = [
     component: Login,
   },
   {
+    path: '/link-directory',
+    name: 'LinkDirectory',
+    component: LinkDirectory,
+  },
+  {
     path: '/admin',
     name: 'admin',
     component: Admin,
@@ -165,6 +172,11 @@ const routes = [
         path: 'delivery-options/update/:publicId',
         name: 'UpdateDeliveryOption',
         component: UpdateDeliveryOption,
+      },
+      {
+        path: 'link-directory',
+        name: 'AdminLinkDirectory',
+        component: AdminLinkDirectory,
       },
     ],
   },

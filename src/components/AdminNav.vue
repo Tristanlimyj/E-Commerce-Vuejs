@@ -12,6 +12,13 @@
             </b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>
               <h2>
+                  <b-nav-item>
+                    <router-link to="/admin/link-directory">
+                      Link Directory
+                    </router-link>
+                  </b-nav-item>
+              </h2>
+              <h2>
                 <b-nav-item>
                   <router-link to="/admin/promo-code">
                     Promo Code
