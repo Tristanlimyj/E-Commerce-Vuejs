@@ -1,8 +1,5 @@
 <template>
   <div class="add-to-cart">
-    <b-container class="nav-bar" fluid>
-      <PublicNav/>
-    </b-container>
     <b-container class="product-view" fluid>
       <b-row
         v-if="product"
@@ -94,9 +91,6 @@
           <h3>The Product that you are looking for is no longer available</h3>
         </b-col>
       </b-row>
-    </b-container>
-    <b-container class="footer-container" fluid>
-      <PublicFooter/>
     </b-container>
   </div>
 
