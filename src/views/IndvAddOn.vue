@@ -9,7 +9,7 @@
 </template>
 <script>
 import Axios from 'axios';
-import AddToCart from '../../components/AddToCart.vue';
+import AddToCart from '../components/AddToCart.vue';
 
 export default {
   components: {

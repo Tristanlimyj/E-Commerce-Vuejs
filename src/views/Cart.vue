@@ -179,9 +179,9 @@
 </template>
 <script>
 import Axios from 'axios';
-import Alert from '../../components/Alert.vue';
-import CartIndvPro from '../../components/CartIndvPro.vue';
-import { stringFunctions as strfunction } from '../../commonFunctions';
+import Alert from '../components/Alert.vue';
+import CartIndvPro from '../components/CartIndvPro.vue';
+import { stringFunctions as strfunction } from '../commonFunctions';
 
 export default {
   components: {
@@ -280,7 +280,7 @@ export default {
     getDeliveryOptions() {
       Axios.get('delivery/current-delivery-options')
         .then((res) => {
-          this.deliveryBtns = this.addStatetoDeliveryOption(res.data.delivery_options);
+          this.deliveryBtns = this.addStatetoDeliveryOption(res.data.current_delivery_options);
         });
     },
   },

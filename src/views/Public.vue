@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import PublicNav from '../../components/PublicNav.vue';
-import PublicFooter from '../../components/PublicFooter.vue';
-import AgeVerification from '../../components/AgeVerification.vue';
+import PublicNav from '../components/PublicNav.vue';
+import PublicFooter from '../components/PublicFooter.vue';
+import AgeVerification from '../components/AgeVerification.vue';
 
 export default {
   components: {

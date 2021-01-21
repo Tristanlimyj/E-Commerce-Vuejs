@@ -85,7 +85,7 @@
 
 <script>
 import Axios from 'axios';
-import { stringFunctions as strfunction } from '../../commonFunctions';
+import { stringFunctions as strfunction } from '../commonFunctions';
 
 export default {
   data() {

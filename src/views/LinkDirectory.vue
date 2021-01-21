@@ -42,8 +42,8 @@
 
 <script>
 import Axios from 'axios';
-import LogoPhoto from '../../images/the-alchemist-alcohol-logo.png';
-import { stringFunctions as strfunction } from '../../commonFunctions';
+import LogoPhoto from '../images/the-alchemist-alcohol-logo.png';
+import { stringFunctions as strfunction } from '../commonFunctions';
 
 export default {
   data() {

@@ -1,16 +1,16 @@
 <template>
   <div class="Products">
     <ShowCaseProducts
-      :products='products'
       :loading='loading'
-      link='products/'
+      :products='products'
+      link='add-on/'
     />
   </div>
 </template>
 
 <script>
 import Axios from 'axios';
-import ShowCaseProducts from '../../components/ShowCaseProducts.vue';
+import ShowCaseProducts from '../components/ShowCaseProducts.vue';
 
 export default {
   components: {
@@ -23,11 +23,11 @@ export default {
     };
   },
   created() {
-    Axios.get('products')
+    Axios.get('add-on')
       .then((res) => {
         const returnedData = res.data;
         this.loading = false;
-        this.products = returnedData.product_info;
+        this.products = returnedData.add_on_info;
       });
   },
 };

@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import Coverphoto from '../../images/coverphoto.jpg';
+import Coverphoto from '../images/coverphoto.jpg';
 
 export default {
   data() {

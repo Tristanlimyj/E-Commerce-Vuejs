@@ -4,7 +4,7 @@ const enforce = require('express-sslify');
 
 const app = express()
 
-const port = process.env.PORT || 8080;
+const port = 3000;
 
 app.use(enforce.HTTPS({ trustProtoHeader: true }))
 app.use(express.static(__dirname + "/dist"));

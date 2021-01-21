@@ -96,7 +96,7 @@
 
 <script>
 import Axios from 'axios';
-import Stripe from '../../components/Stripe.vue';
+import Stripe from '../components/Stripe.vue';
 
 export default {
   components: {

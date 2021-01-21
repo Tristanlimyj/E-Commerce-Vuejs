@@ -9,7 +9,7 @@
 </template>
 <script>
 import Axios from 'axios';
-import AddToCart from '../../components/AddToCart.vue';
+import AddToCart from '../components/AddToCart.vue';
 
 export default {
   components: {
@@ -21,7 +21,7 @@ export default {
     };
   },
   created() {
-    let productUrl = 'products/indv_product/';
+    let productUrl = 'products/indv-product/';
     productUrl += this.$route.params.name;
 
     Axios.get(productUrl)

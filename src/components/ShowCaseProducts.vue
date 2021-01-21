@@ -34,7 +34,7 @@
             v-for="cat in productCategory" :key="cat"
             class="filter-checkbox"
           >
-            {{ callTitlelize(cat) }}
+            {{ titlelize(cat) }}
             <input type="checkbox" v-on:click="filterCategory(cat)">
             <span class="checkmark"></span>
           </label>
@@ -72,7 +72,7 @@
         <a :href="link + product.name.replace(/\s/g, '-')">
           <b-card
           :img-src="$store.state.apiurl + '/images/' + product.coverphoto"
-          :title="callTitlelize(product.name)"
+          :title="titlelize(product.name)"
           >
           <b-card-text>
             Price: ${{ product.price }}
@@ -89,10 +89,11 @@
 </template>
 
 <script>
-import { stringFunctions as strfunction } from '../commonFunctions';
+import titlelizeMixin from './mixins/titlelizeMixin';
 
 export default {
   props: ['products', 'link', 'loading'],
+  mixins: [titlelizeMixin],
   data() {
     return {
       searchInput: '',
@@ -100,9 +101,6 @@ export default {
     };
   },
   methods: {
-    callTitlelize(sentence) {
-      return strfunction.titlelize(sentence);
-    },
     filterCategory(category) {
       if (this.selectedCategory.includes(category)) {
         this.selectedCategory = this.selectedCategory.filter(

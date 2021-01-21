@@ -68,7 +68,7 @@
                 id="mixer-selection-radio"
                 v-model="cartForm.mixer"
                 name="mixer-selection"
-                :options="JSON.parse(product.mixer)"
+                :options="options"
                 required
               ></b-form-radio-group>
             </b-form-group>
@@ -112,6 +112,7 @@ export default {
         mixer: '',
       },
       showAlert: false,
+      options: [],
       message: '',
       typeAlert: '',
     };
@@ -168,6 +169,26 @@ export default {
         productId: this.product.public_id,
       };
     },
+    mixerOptions(allMixers) {
+      let i = 0;
+      let x = 0;
+      const productMixer = JSON.parse(this.product.mixer);
+      for (i; i < allMixers.length; i += 1) {
+        x = 0;
+        for (x; x < productMixer.length; x += 1) {
+          if (allMixers[i].public_id === productMixer[x]) {
+            this.options.push({ text: allMixers[i].name, value: allMixers[i].public_id });
+          }
+        }
+      }
+    },
+  },
+  created() {
+    Axios.get('mixers')
+      .then((res) => {
+        const allMixers = res.data.mixers;
+        this.mixerOptions(allMixers);
+      });
   },
 };
 </script>
