@@ -1,93 +1,78 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 // Components
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    component: () => import('../views/Public.vue'),
+    path: "/",
+    component: () => import("../components/Something/Public.vue"),
 
     children: [
       {
-        path: '/',
-        name: 'home',
-        component: () => import('../views/Home.vue'),
+        path: "/",
+        name: "home",
+        component: () => import("../views/Home.vue")
       },
       {
-        path: '/cart',
-        name: 'Cart',
-        component: () => import('../views/Cart.vue'),
+        path: "/cart",
+        name: "Cart",
+        component: () => import("../views/Cart.vue")
       },
       {
-        path: '/products',
-        name: 'products',
-        component: () => import('../views/Products.vue'),
+        path: "/products",
+        name: "products",
+        component: () => import("../views/Products.vue")
       },
       {
-        path: '/add-on',
-        name: 'AddOnPublic',
-        component: () => import('../views/AddOnPublic.vue'),
+        path: "/add-on",
+        name: "AddOnPublic",
+        component: () => import("../views/AddOn.vue")
       },
       {
-        path: '/products/:name',
-        name: 'IndvPro',
-        component: () => import('../views/IndvPro.vue'),
+        path: "/products/:name",
+        name: "IndvPro",
+        component: () => import("../views/IndvPro.vue")
       },
       {
-        path: '/add-on/:name',
-        name: 'IndvAddOn',
-        component: () => import('../views/IndvAddOn.vue'),
+        path: "/add-on/:name",
+        name: "IndvAddOn",
+        component: () => import("../views/IndvAddOn.vue")
       },
       {
-        path: '/checkout',
-        name: 'Checkout',
-        component: () => import('../views/Checkout.vue'),
+        path: "/checkout",
+        name: "Checkout",
+        component: () => import("../views/Checkout.vue")
       },
       {
-        path: '/payment/success/:orderId',
-        name: 'PaymentSuccess',
-        component: () => import('../views/PaymentSuccess.vue'),
+        path: "/payment/success/:orderId",
+        name: "PaymentSuccess",
+        component: () => import("../views/PaymentSuccess.vue")
       },
       {
-        path: '/payment/error',
-        name: 'PaymentError',
-        component: () => import('../views/PaymentError.vue'),
-      },
-    ],
+        path: "/payment/error",
+        name: "PaymentError",
+        component: () => import("../views/PaymentError.vue")
+      }
+    ]
   },
   {
-    path: '/contact',
-    name: 'ContactPage',
-    component: () => import('../views/ContactPage.vue'),
+    path: "/link-directory",
+    name: "LinkDirectory",
+    component: () => import("../views/LinkDirectory.vue")
   },
   {
-    path: '/terms-of-service',
-    name: 'TermsofService',
-    component: () => import('../views/TermsofService.vue'),
-  },
-  {
-    path: '/privacy-policy',
-    name: 'PrivacyPolicy',
-    component: () => import('../views/PrivacyPolicy.vue'),
-  },
-  {
-    path: '/link-directory',
-    name: 'LinkDirectory',
-    component: () => import('../views/LinkDirectory.vue'),
-  },
-  {
-    path: '*',
-    name: 'ErrorPage',
-    component: () => import('../views/ErrorPage.vue'),
-  },
+    path: "*",
+    name: "ErrorPage",
+    component: () => import("../views/ErrorPage.vue")
+  }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

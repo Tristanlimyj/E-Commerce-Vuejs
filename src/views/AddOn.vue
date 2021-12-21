@@ -1,6 +1,6 @@
 <template>
   <div class="Products">
-    <ShowCaseProducts :products="products" :loading="loading" link="products/" />
+    <ShowCaseProducts :loading="loading" :products="products" link="add-on/" />
   </div>
 </template>
 
@@ -19,10 +19,11 @@ export default {
     };
   },
   created() {
-    Axios.get("/products").then(res => {
+    Axios.get("add-ons").then(res => {
       const returnedData = res.data;
+
+      this.products = returnedData.addOns;
       this.loading = false;
-      this.products = returnedData.products;
     });
   }
 };

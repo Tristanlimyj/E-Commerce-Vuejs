@@ -1,16 +1,20 @@
 // Bootstrap import
 import {
-  BootstrapVue, IconsPlugin, CarouselPlugin,
-  VBScrollspyPlugin, LayoutPlugin, JumbotronPlugin,
-  NavbarPlugin,
-} from 'bootstrap-vue';
+  BootstrapVue,
+  IconsPlugin,
+  CarouselPlugin,
+  VBScrollspyPlugin,
+  LayoutPlugin,
+  JumbotronPlugin,
+  NavbarPlugin
+} from "bootstrap-vue";
 // Bootstrap Dependencies
-import PortalVue from 'portal-vue';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import PortalVue from "portal-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 // Font Awesome Icons
-import { dom, library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { dom, library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faGlassCheers,
   faMapMarkerAlt,
@@ -19,41 +23,28 @@ import {
   faMobileAlt,
   faCouch,
   faTruck,
-  faClock,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faCheckCircle,
-  faTimesCircle,
-} from '@fortawesome/free-regular-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+  faClock
+} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 // Vee-Validate
-import {
-  ValidationObserver, ValidationProvider, extend,
-} from 'vee-validate';
-import {
-  alpha, required, email, is, digits,
-} from 'vee-validate/dist/rules';
+import { ValidationObserver, ValidationProvider, extend } from "vee-validate";
+import { alpha, required, email, is, digits } from "vee-validate/dist/rules";
 // Axios Import
-import axios from 'axios';
+import axios from "axios";
 // Vue Cookies
-import VueCookies from 'vue-cookies';
-// Import GTAG
-import VueGtag from 'vue-gtag';
-// Vue Imports
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-// Vuex Import
-import store from './store';
+import VueCookies from "vue-cookies";
 
-// Vue Use GTAG
-Vue.use(VueGtag, {
-  config: { id: 'G-VN4BNWPCZC' },
-});
-// ENV Variable
-require('dotenv').config();
-// Axios Defaults
-axios.defaults.baseURL = process.env.VUE_APP_APIURL;
+// Vue Imports
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+// Vuex Import
+import store from "./store";
+
+// Creating Mirage Server
+import { makeServer } from "./server.js";
+makeServer();
 
 // Initialise in the app
 // BootStrap
@@ -68,7 +59,7 @@ Vue.use(PortalVue);
 
 // Vue Cookies
 Vue.use(VueCookies);
-Vue.$cookies.config('20min', '/', `${process.env.VUE_APP_CURRENT_URL}`, true, 'Lax');
+Vue.$cookies.config("20min", "/", `${process.env.VUE_APP_CURRENT_URL}`, true, "Lax");
 // Font Awesome
 library.add(
   faGlassCheers,
@@ -81,18 +72,18 @@ library.add(
   faInstagram,
   faCouch,
   faTruck,
-  faClock,
+  faClock
 );
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 dom.watch();
 
 // Vee-Validate
-Vue.component('ValidationProvider', ValidationProvider);
-Vue.component('ValidationObserver', ValidationObserver);
+Vue.component("ValidationProvider", ValidationProvider);
+Vue.component("ValidationObserver", ValidationObserver);
 
-extend('postal', {
-  message: 'Invalid postal code',
-  validate: ((value) => {
+extend("postal", {
+  message: "Invalid postal code",
+  validate: value => {
     const cleanInput = value.trim();
     const postalNoS = new RegExp(/^s\d{6}$/i);
     const postalNum = new RegExp(/^\d{6}$/i);
@@ -100,54 +91,52 @@ extend('postal', {
       return true;
     }
     return false;
-  }),
+  }
 });
-extend('handphoneNumber', {
-  message: 'Invalid handphone number',
-  validate: ((value) => {
+extend("handphoneNumber", {
+  message: "Invalid handphone number",
+  validate: value => {
     if (Number.isInteger(parseInt(value, 10)) && value.toString().length <= 8) {
       return true;
     }
     return false;
-  }),
+  }
 });
-extend('alpha', {
+extend("alpha", {
   ...alpha,
-  message: 'The input that you have written is invalid',
+  message: "The input that you have written is invalid"
 });
-extend('digits', {
+extend("digits", {
   ...digits,
-  message: 'Please input a valid number',
+  message: "Please input a valid number"
 });
-extend('email', {
+extend("email", {
   ...email,
-  message: 'Please input a valid email',
+  message: "Please input a valid email"
 });
-extend('required', {
+extend("required", {
   ...required,
-  message: 'This field is required',
+  message: "This field is required"
 });
-extend('is', {
+extend("is", {
   ...is,
-  message: 'Please accept the Terms and Conditions',
+  message: "Please accept the Terms and Conditions"
 });
-extend('passwordConfirmation', {
-  params: ['target'],
+extend("passwordConfirmation", {
+  params: ["target"],
   validate(value, { target }) {
     return value === target;
   },
-  message: 'Password confirmation does not match',
+  message: "Password confirmation does not match"
 });
-
-Vue.config.productionTip = false;
 
 new Vue({
   components: {
     ValidationProvider,
     ValidationObserver,
-    FontAwesomeIcon,
+    FontAwesomeIcon
   },
   store,
   router,
-  render: (h) => h(App),
-}).$mount('#app');
+  render: h => h(App)
+}).$mount("#app");
