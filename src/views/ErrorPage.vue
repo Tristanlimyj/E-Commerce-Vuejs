@@ -4,20 +4,18 @@
       <b-row>
         <b-col
           class="order-information"
-          xs='12'
-          sm='12'
-          offset-md='3'
-          md='6'
-          offset-lg='4'
-          lg='4'
-          offset-xl='4'
-          xl='4'
+          xs="12"
+          sm="12"
+          offset-md="3"
+          md="6"
+          offset-lg="4"
+          lg="4"
+          offset-xl="4"
+          xl="4"
         >
-          <i
-            class="error-icon far fa-times-circle">
-          </i>
-          <br>
-          <br>
+          <i class="error-icon far fa-times-circle"> </i>
+          <br />
+          <br />
           <h1>
             Error 404
           </h1>
@@ -30,8 +28,7 @@
   </div>
 </template>
 
-<script>
-</script>
+<script></script>
 
 <style scoped>
 .error-page {

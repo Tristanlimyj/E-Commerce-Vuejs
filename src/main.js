@@ -30,8 +30,7 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 // Vee-Validate
 import { ValidationObserver, ValidationProvider, extend } from "vee-validate";
 import { alpha, required, email, is, digits } from "vee-validate/dist/rules";
-// Axios Import
-import axios from "axios";
+
 // Vue Cookies
 import VueCookies from "vue-cookies";
 
@@ -39,8 +38,6 @@ import VueCookies from "vue-cookies";
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-// Vuex Import
-import store from "./store";
 
 // Creating Mirage Server
 import { makeServer } from "./server.js";
@@ -59,7 +56,7 @@ Vue.use(PortalVue);
 
 // Vue Cookies
 Vue.use(VueCookies);
-Vue.$cookies.config("20min", "/", `${process.env.VUE_APP_CURRENT_URL}`, true, "Lax");
+Vue.$cookies.config("20min", "/", "localhost", true, "Lax");
 // Font Awesome
 library.add(
   faGlassCheers,
@@ -136,7 +133,6 @@ new Vue({
     ValidationObserver,
     FontAwesomeIcon
   },
-  store,
   router,
   render: h => h(App)
 }).$mount("#app");

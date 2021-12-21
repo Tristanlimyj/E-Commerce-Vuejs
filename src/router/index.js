@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: () => import("../components/Something/Public.vue"),
+    component: () => import("../components/Skeleton/Skeleton.vue"),
 
     children: [
       {
