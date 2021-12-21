@@ -4,31 +4,24 @@
       <b-row>
         <b-col
           class="order-information"
-          xs='12'
-          sm='12'
-          offset-md='3'
-          md='6'
-          offset-lg='4'
-          lg='4'
-          offset-xl='4'
-          xl='4'
+          xs="12"
+          sm="12"
+          offset-md="3"
+          md="6"
+          offset-lg="4"
+          lg="4"
+          offset-xl="4"
+          xl="4"
         >
-          <i
-            class="error-icon far fa-times-circle">
-          </i>
-          <br>
-          <br>
+          <i class="error-icon far fa-times-circle"> </i>
+          <br />
+          <br />
           <h2>
             Payment Error
           </h2>
-          <br>
+          <br />
           <p>
-            Please try again or contact
-            us at +65 81730458 or drop us a DM on
-            Instagram
-            <a href="https://www.instagram.com/thealchemistalcohol_/">
-              @thealchemistalcohol_
-            </a>
+            Please try again or contact us at +65 91234567 or drop us a DM on Instagram!!!
           </p>
         </b-col>
       </b-row>
@@ -37,21 +30,21 @@
 </template>
 
 <script>
-import { stringFunctions as strfunction } from '../commonFunctions';
+import { stringFunctions as strfunction } from "../commonFunctions";
 
 export default {
   data() {
     return {
-      paymentStatus: '',
+      paymentStatus: "",
       orderInfo: {},
-      error: false,
+      error: false
     };
   },
   methods: {
     callTitlelize(sentence) {
       return strfunction.titlelize(sentence);
-    },
-  },
+    }
+  }
 };
 </script>
 

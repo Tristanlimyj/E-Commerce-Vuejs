@@ -141,6 +141,10 @@ export function makeServer() {
       this.get("/add-ons", schema => {
         return schema.addOns.all();
       });
+      this.get("/add-ons/:productName", schema => {
+        const productName = request.params.productName.replace("-", "");
+        return schema.addOns.find(productName);
+      });
     }
   });
   return server;
