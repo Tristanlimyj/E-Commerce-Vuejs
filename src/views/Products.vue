@@ -6,7 +6,7 @@
 
 <script>
 import Axios from "axios";
-import ShowCaseProducts from "../components/ShowCaseProducts.vue";
+import ShowCaseProducts from "../components/ShowCaseProducts/ShowCaseProducts.vue";
 
 export default {
   components: {

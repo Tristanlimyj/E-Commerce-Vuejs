@@ -20,15 +20,15 @@
           offset-xl="1"
           xl="3"
         >
-          <h2 id="product-name">
-            {{ callTitlelize(this.product.name) }}
-          </h2>
-          <h5 id="product-price"><strong>Price:</strong> ${{ this.product.price }}</h5>
-
+          <ProductInfo
+            :productName="product.name"
+            :productPrice="product.price"
+            :callTitlelize="callTitlelize"
+          />
           <b-form class="product-form" @submit.prevent="addToCart">
             <b-form-group
-              v-if="liquorOrAddOn === 'liquor'"
-              id="mixer-selection"
+              v-if="isLiquor"
+              class="mixer-selection"
               label="Select your mixer/bundle:"
               label-for="mixer-selection"
             >
@@ -37,7 +37,7 @@
                 id="mixer-selection-radio"
                 v-model="cartForm.mixer"
                 name="mixer-selection"
-                :options="options"
+                :options="mixerOptions(product.mixer)"
                 required
               ></b-form-radio-group>
             </b-form-group>
@@ -45,24 +45,25 @@
           </b-form>
         </b-col>
       </b-row>
-      <b-row class="no-product" v-if="!product">
-        <b-col sm="12" md="12" lg="8" offset-lg="2" xl="8" offset-xl="2">
-          <h3>The Product that you are looking for is no longer available</h3>
-        </b-col>
-      </b-row>
+      <NoProduct v-if="!product" />
     </b-container>
   </div>
 </template>
 <script>
 import Axios from "axios";
-import Alert from "./Alert.vue";
-import { stringFunctions as strfunction } from "../commonFunctions";
+import Alert from "../Alert.vue";
+import NoProduct from "./Components/NoProduct.vue";
+import ProductInfo from "./Components/ProductInfo.vue";
+import { stringFunctions as strfunction } from "../../commonFunctions";
+import { v4 as uuidv4 } from "uuid";
 
 export default {
   components: {
-    Alert
+    Alert,
+    NoProduct,
+    ProductInfo
   },
-  props: ["product", "liquorOrAddOn", "addToCartUrl"],
+  props: ["product", "isLiquor"],
   data() {
     return {
       cartForm: {
@@ -81,69 +82,53 @@ export default {
       }
       return false;
     },
-    mixerFunc(mix) {
-      let i = 0;
-      for (i; i < mix.length; i += 1) {
-        this.cartForm.mixer.push(this.product[0].mixer[mix[i]]);
-      }
-    },
     showMessage(message, typeAlert) {
       this.typeAlert = typeAlert;
       this.message = message;
       this.showAlert = true;
     },
     addToCart() {
-      if (this.$cookies.isKey("cartId")) {
-        const payload = this.payloadCreate();
+      // Check if there is already a key linking this session that is linked to a cart
+      const notFirstPurchase = this.$cookies.isKey("cartId");
+
+      let payload = this.payloadCreate();
+
+      if (notFirstPurchase) {
         payload.cartId = this.$cookies.get("cartId");
-
-        Axios.post(this.addToCartUrl, payload).then(() => {
-          this.$router.push({ name: "Cart" });
-        });
       } else {
-        const payload = this.payloadCreate();
-
-        Axios.post(this.addToCartUrl, payload)
-          .then(res => {
-            const returnValue = res.data;
-            this.$cookies.set("cartId", returnValue.cart_id, "7d");
-            this.$router.push({ name: "Cart" });
-          })
-          .catch(err => {
-            this.showMessage(err.data, "danger");
-          });
+        const cartId = uuidv4();
+        payload.cartId = cartId;
+        this.$cookies.set("cartId", cartId, "7d");
       }
+
+      Axios.post("/add-to-cart", payload)
+        .then(() => {
+          this.$router.push({ name: "Cart" });
+        })
+        .catch(() => {
+          this.showMessage("Unable to add to cart", "danger");
+        });
     },
     payloadCreate() {
-      if (this.liquorOrAddOn === "liquor") {
+      if (this.isLiquor) {
         return {
-          productId: this.product.public_id,
-          mixer: this.cartForm.mixer
+          productId: this.product.publicId,
+          mixer: this.cartForm.mixer,
+          isLiquor: this.isLiquor
         };
       }
       return {
-        productId: this.product.public_id
+        productId: this.product.publicId,
+        isLiquor: this.isLiquor
       };
     },
-    mixerOptions(allMixers) {
-      let i = 0;
-      let x = 0;
-      const productMixer = JSON.parse(this.product.mixer);
-      for (i; i < allMixers.length; i += 1) {
-        x = 0;
-        for (x; x < productMixer.length; x += 1) {
-          if (allMixers[i].public_id === productMixer[x]) {
-            this.options.push({ text: allMixers[i].name, value: allMixers[i].public_id });
-          }
-        }
+    mixerOptions(mixer) {
+      let returnedMixer = [];
+      for (let x = 0; x < mixer.length; x += 1) {
+        returnedMixer.push({ text: mixer[x].name, value: mixer[x].id });
       }
+      return returnedMixer;
     }
-  },
-  created() {
-    Axios.get("mixers").then(res => {
-      const allMixers = res.data.mixers;
-      this.mixerOptions(allMixers);
-    });
   }
 };
 </script>
@@ -169,9 +154,6 @@ export default {
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
-  .footer-container {
-    padding-top: 0px;
-  }
 }
 .product-form {
   text-align: center;
@@ -184,22 +166,19 @@ export default {
   min-height: 50vh;
   text-align: center;
 }
-#product-name {
+.product-name {
   font-weight: bold;
   text-align: center;
 }
-#product-price {
+.product-price {
   margin-top: 1rem;
 }
-#mixer-selection {
+.mixer-selection {
   margin-top: 1.5rem;
   font-weight: bold;
 }
 .btn {
   background-color: black;
   width: 355px;
-}
-.no-product {
-  text-align: center;
 }
 </style>

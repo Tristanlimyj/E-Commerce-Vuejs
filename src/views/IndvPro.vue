@@ -1,37 +1,31 @@
 <template>
   <div class="indv-pro">
-    <addToCart
-      :product='product'
-      liquorOrAddOn='liquor'
-      addToCartUrl='/cart/add-to-cart-liquor'
-    />
+    <addToCart :product="product" :isLiquor="true" />
   </div>
 </template>
 <script>
-import Axios from 'axios';
-import AddToCart from '../components/AddToCart.vue';
+import Axios from "axios";
+import AddToCart from "../components/IndvItems/AddToCart.vue";
 
 export default {
   components: {
-    AddToCart,
+    AddToCart
   },
   data() {
     return {
-      product: {},
+      product: {}
     };
   },
   created() {
-    let productUrl = 'products/indv-product/';
-    productUrl += this.$route.params.name;
+    const productUrl = "/products/" + this.$route.params.name;
 
     Axios.get(productUrl)
-      .then((response) => {
-        this.product = response.data;
-        this.product = this.product.returned_product;
+      .then(response => {
+        this.product = response.data.product;
       })
       .catch(() => {
         this.product = false;
       });
-  },
+  }
 };
 </script>

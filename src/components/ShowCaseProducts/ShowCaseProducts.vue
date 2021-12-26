@@ -1,5 +1,5 @@
 <template>
-  <div class="Products">
+  <div class="products">
     <b-container class="search-bar-filter" fluid>
       <b-row>
         <b-col
@@ -40,26 +40,24 @@
           v-if="filterdProducts.length === 0"
           id="no-product"
         >
-          <h5 v-if="!loading">We are unable to find the what you were looking for:(</h5>
-          <h5 v-if="loading">Loading...</h5>
+          <IfNoProducts :loading="loading" />
         </b-col>
         <b-col
           v-for="product in filterdProducts"
-          :key="product.public_id"
+          :key="product.publicId"
           cols="6"
           sm="6"
           md="6"
           lg="3"
           xl="3"
         >
-          <a :href="link + product.name.replace(/\s/g, '-')">
-            <b-card :img-src="`products/${product.coverphoto}`" :title="titlelize(product.name)">
-              <b-card-text> Price: ${{ product.price }} </b-card-text>
-              <template #footer>
-                <b-button class="add-to-cart-btn" pill>Purchase</b-button>
-              </template>
-            </b-card>
-          </a>
+          <ProductCard
+            :coverphoto="product.coverphoto"
+            :name="product.name"
+            :price="product.price"
+            :titlelize="titlelize"
+            :link="link"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -67,11 +65,14 @@
 </template>
 
 <script>
-import titlelizeMixin from "./mixins/titlelizeMixin";
+import titlelizeMixin from "../mixins/titlelizeMixin";
+import ProductCard from "./Components/ProductCard.vue";
+import IfNoProducts from "./Components/IfNoProducts.vue";
 
 export default {
   props: ["products", "link", "loading"],
   mixins: [titlelizeMixin],
+  components: { ProductCard, IfNoProducts },
   data() {
     return {
       searchInput: "",
@@ -139,40 +140,7 @@ export default {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.card-title {
-  font-size: 1rem;
-  height: 6vh;
-  color: black !important;
-}
-a:hover {
-  text-decoration: none !important;
-}
-.card {
-  border: none;
-}
-.card-body {
-  padding: 0px;
-  padding-top: 1rem;
-  text-align: center;
-}
-.card-text {
-  color: black;
-  margin-bottom: 1vh;
-}
-.card-footer {
-  padding: 0px !important;
-  text-align: center;
-  background-color: transparent;
-  border-top: none;
-  padding-bottom: 3vh !important;
-}
-.add-to-cart-btn {
-  background-color: black;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.6rem;
-  padding-right: 0.6rem;
-}
+
 .filter-checkbox {
   padding: 1rem;
   font-size: 1.1rem;
@@ -181,13 +149,10 @@ a:hover {
 .filter-area {
   text-align: center;
 }
-#no-product {
-  text-align: center;
-}
 .product-body {
   min-height: 60vh;
 }
-.Products {
+.products {
   min-height: 100vh;
 }
 </style>
