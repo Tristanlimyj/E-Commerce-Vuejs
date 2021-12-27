@@ -46,7 +46,7 @@ const routes = [
         component: () => import("../views/Checkout.vue")
       },
       {
-        path: "/payment/success/:orderId",
+        path: "/payment/success",
         name: "PaymentSuccess",
         component: () => import("../views/PaymentSuccess.vue")
       },

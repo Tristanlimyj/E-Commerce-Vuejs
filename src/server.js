@@ -257,34 +257,8 @@ export function makeServer() {
         const userCart = schema.carts.findBy({ cartPubId: cartId });
 
         if (userCart) {
-          // response array
-          let responseCart = [];
+          const responseCart = getFullProductInfo(schema, userCart);
 
-          const cartItems = schema.cartItems.where({ cartId: userCart.id }).models;
-          // Get the information required
-          for (let i = 0; i < cartItems.length; i++) {
-            // Get the name of the product
-            const currentItem = cartItems[i];
-
-            let productData = null;
-            // if is liquor get the mixer name
-            if (currentItem.isLiquor) {
-              productData = schema.products.findBy({ publicId: currentItem.productId });
-              productData.update({ isLiquor: true });
-              productData.mixer = {
-                mixerOptions: productData.mixer,
-                currentMixer: productData.mixer.find(mix => mix.id === currentItem.mixerId)
-              };
-            } else {
-              productData = schema.addOns.findBy({ publicId: currentItem.productId });
-              productData.isLiquor = false;
-            }
-            // add to the cart
-            responseCart.push({
-              productData: productData,
-              cartItemId: currentItem.id
-            });
-          }
           let cartPromoCode = {};
 
           if (userCart.promoCodeId) {
@@ -403,6 +377,26 @@ export function makeServer() {
           paid: true
         });
       });
+      this.post("/cart/paid", (schema, request) => {
+        const payload = JSON.parse(request.requestBody);
+        const cartId = payload.cartId;
+
+        const userCart = schema.carts.findBy({ cartPubId: cartId, paid: true });
+
+        const responseCart = getFullProductInfo(schema, userCart);
+
+        let cartPromoCode = {};
+
+        if (userCart.promoCodeId) {
+          cartPromoCode = schema.promoCodes.find(userCart.promoCodeId);
+        }
+
+        return {
+          customerCart: responseCart,
+          deliveryOptionId: userCart.deliveryOptionId,
+          promoCode: cartPromoCode
+        };
+      });
       // Delivery Options
       this.get("/delivery", schema => {
         return schema.deliveryOptions.all();
@@ -424,4 +418,37 @@ export function makeServer() {
     }
   });
   return server;
+}
+
+function getFullProductInfo(schema, userCart) {
+  // response array
+  let responseCart = [];
+
+  const cartItems = schema.cartItems.where({ cartId: userCart.id }).models;
+  // Get the information required
+  for (let i = 0; i < cartItems.length; i++) {
+    // Get the name of the product
+    const currentItem = cartItems[i];
+
+    let productData = null;
+    // if is liquor get the mixer name
+    if (currentItem.isLiquor) {
+      productData = schema.products.findBy({ publicId: currentItem.productId });
+      productData.update({ isLiquor: true });
+      productData.mixer = {
+        mixerOptions: productData.mixer,
+        currentMixer: productData.mixer.find(mix => mix.id === currentItem.mixerId)
+      };
+    } else {
+      productData = schema.addOns.findBy({ publicId: currentItem.productId });
+      productData.isLiquor = false;
+    }
+    // add to the cart
+    responseCart.push({
+      productData: productData,
+      cartItemId: currentItem.id
+    });
+  }
+
+  return responseCart;
 }
