@@ -1,24 +1,15 @@
-# client
+# E-Commerce Web App
 
-## Project setup
-```
-npm install
-```
+Built Using: VueJs, MirageJs
+Project Link: https://e-commerce.goodfunfriday.com/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Description
 
-### Compiles and minifies for production
-```
-npm run build
-```
+The Web App was used as a store front to allow users to purchase drinks from my start-up. The SPA connects to a REST API, which is currently being Mocked by MirageJs.
 
-### Lints and fixes files
-```
-npm run lint
-```
+The Web App was designed to accessible from one click away, so as enable users to be able to easily navigated the site and find what they are looking for.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## View on Local Machine
+
+Clone the repo and run the `npm run serve` in the command line to start the development server.\
+Open [http://localhost:8080](http://localhost:8080) to view the project in the browser.
