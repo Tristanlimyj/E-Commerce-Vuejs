@@ -56,7 +56,7 @@ Vue.use(PortalVue);
 
 // Vue Cookies
 Vue.use(VueCookies);
-Vue.$cookies.config("20min", "/", "localhost", true, "Lax");
+Vue.$cookies.config("20min", "/", null, true, "Lax");
 // Font Awesome
 library.add(
   faGlassCheers,
